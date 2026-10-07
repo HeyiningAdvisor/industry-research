@@ -18,9 +18,14 @@
   body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased}
   .wrap{max-width:980px;margin:0 auto;padding:0 28px}
   .top{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;border-bottom:1px solid var(--line-soft)}
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.5px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.5px;text-decoration:none}
   .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(11,150,114,.1)}
   .top .en{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
+  .top .right{display:flex;align-items:center;gap:18px}
+  .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);transition:color .2s}
+  .back::before{content:"←"}
+  .back:hover{color:var(--ink)}
+  footer .back{margin-bottom:16px}
   .hero{padding:72px 0 40px}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
   .hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(38px,6vw,62px);line-height:1.1;margin:26px 0 18px;letter-spacing:-.5px}
@@ -49,8 +54,11 @@
 </head>
 <body>
 <div class="top">
-  <div class="brand"><img src="logo.svg" alt="合壹宁财税 HEYINING ADVISOR" style="height:42px;width:auto;display:block"></div>
-  <div class="en">行业研究 · Industry Research</div>
+  <a class="brand" href="https://www.heyining.com.cn" aria-label="返回合壹宁财税官网"><img src="logo.svg" alt="合壹宁财税 HEYINING ADVISOR" style="height:42px;width:auto;display:block"></a>
+  <div class="right">
+    <span class="en">行业研究 · Industry Research</span>
+    <a class="back" href="https://www.heyining.com.cn">返回主站</a>
+  </div>
 </div>
 
 <div class="wrap">
@@ -95,6 +103,7 @@
 
 <footer>
   <div class="wrap">
+    <a class="back" href="https://www.heyining.com.cn">返回合壹宁主站</a>
     <p class="fine">本页面聚合的两份行业研究报告均基于公开信息与上市公司定期报告整理，用于行业结构研究与决策参考，不构成任何投资建议。报告统计「上市主体数量分布」这一结构事实，不声称任何「国产化率」。</p>
   </div>
 </footer>
