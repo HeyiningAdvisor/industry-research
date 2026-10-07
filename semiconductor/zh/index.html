@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="基于 199 家 A 股与港股上市公司的中国半导体国产化供给格局判断：设计拥挤、关键材料稀缺、先进制程受制。">
+<meta name="author" content="合壹宁财税 Heyining Advisor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中国半导体国产化：供给格局与替代约束">
+<meta property="og:description" content="基于 199 家上市公司的中国半导体国产化供给格局判断：设计拥挤、材料稀缺、先进制程受制。">
+<meta property="og:image" content="https://heyiningadvisor.github.io/semiconductor-supply-report/screenshots/hero-zh.png">
+<meta name="twitter:card" content="summary_large_image">
+<title>中国半导体国产化：供给格局与替代约束 · 行业判断报告</title>
+<style>
+  :root{
+    --bg:#f7f7f3;
+    --bg-2:#eef1eb;
+    --surface:#ffffff;
+    --surface-2:#f1f4ee;
+    --line:#dde3da;
+    --line-soft:#e7ece3;
+    --ink:#1b211c;
+    --ink-2:#3c433d;
+    --muted:#68716a;
+    --muted-2:#99a299;
+    --teal:#0b9672;
+    --teal-soft:rgba(11,150,114,.10);
+    --amber:#b8771f;
+    --amber-soft:rgba(184,119,31,.10);
+    --coral:#c5492f;
+    --coral-soft:rgba(197,73,47,.10);
+    --ice:#3f6fb5;
+    --ice-soft:rgba(63,111,181,.10);
+    --violet:#7a5fb8;
+    --violet-soft:rgba(122,95,184,.10);
+    --font-display:"Songti SC","STSong","New York","Georgia","Times New Roman",serif;
+    --font-body:"PingFang SC","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",sans-serif;
+    --font-mono:"SF Mono","Menlo",ui-monospace,"SFMono-Regular","Monaco",monospace;
+    --maxw:1180px;
+    --gutter:clamp(20px,4vw,48px);
+    --radius:8px;
+    --shadow:0 24px 60px -34px rgba(36,46,38,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    letter-spacing:0;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--teal);color:#ffffff}
+  a{color:inherit;text-decoration:none}
+
+  /* progress bar */
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--teal),var(--amber));z-index:100;transition:width .12s linear}
+
+  /* nav */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:90;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 var(--gutter);height:60px;
+    background:rgba(247,247,243,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;letter-spacing:.5px}
+  .nav .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-soft)}
+  .nav .brand span{color:var(--ink-2);font-size:14px}
+  .nav .links{display:flex;gap:22px}
+  .nav .links a{font-size:13px;color:var(--muted);transition:color .2s;position:relative}
+  .nav .links a:hover{color:var(--ink)}
+  @media(max-width:820px){.nav .links{display:none}}
+
+  /* layout */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+  section{position:relative}
+
+  /* hero */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:120px 0 72px;position:relative;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(900px 520px at 78% -8%,rgba(11,150,114,.12),transparent 60%),
+      radial-gradient(700px 500px at 8% 108%,rgba(184,119,31,.08),transparent 60%);
+  }
+  .hero .grid-bg{
+    position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:
+      linear-gradient(var(--line-soft) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 70%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 70%);
+  }
+  .hero .inner{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--teal);border:1px solid var(--line);border-radius:999px;padding:7px 15px;
+    background:rgba(79,209,165,.06);
+  }
+  .eyebrow .sep{width:14px;height:1px;background:var(--teal)}
+  .hero h1{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(42px,7.4vw,92px);line-height:1.08;margin:34px 0 26px;
+    letter-spacing:-.5px;
+  }
+  .hero h1 .accent{color:var(--amber)}
+  .hero h1 .teal{color:var(--teal)}
+  .standfirst{
+    max-width:680px;font-size:clamp(16px,1.6vw,19px);color:var(--ink-2);line-height:1.8;
+  }
+  .standfirst b{color:var(--ink);font-weight:600}
+  .hero .meta{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+  .hero .meta span{display:inline-flex;align-items:center;gap:8px}
+  .hero .meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--muted-2)}
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--muted);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .scroll-cue .line{width:1px;height:36px;background:linear-gradient(var(--teal),transparent);animation:drop 1.8s ease-in-out infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* stat tiles */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:56px}
+  .stat{background:var(--surface);padding:28px 26px;transition:background .25s}
+  .stat:hover{background:var(--surface-2)}
+  .stat .num{font-family:var(--font-mono);font-size:clamp(28px,3.4vw,44px);font-weight:600;line-height:1;letter-spacing:-1px}
+  .stat .num small{font-size:.5em;color:var(--muted);font-weight:400;letter-spacing:0}
+  .stat .label{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.5}
+  .stat .label b{color:var(--ink-2);font-weight:600}
+  .stat .tone-teal{color:var(--teal)}
+  .stat .tone-amber{color:var(--amber)}
+  .stat .tone-coral{color:var(--coral)}
+  @media(max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+
+  /* section header */
+  .sec{padding:110px 0}
+  .sec.alt{background:var(--bg-2)}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+  .sec-no{font-family:var(--font-mono);font-size:13px;color:var(--amber);letter-spacing:3px}
+  .sec-title{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.4vw,48px);line-height:1.15;letter-spacing:-.5px;margin-top:8px}
+  .sec-sub{max-width:560px;color:var(--muted);font-size:15px;line-height:1.8}
+  .sec-head .right{text-align:right;font-family:var(--font-mono);font-size:11px;color:var(--muted-2);letter-spacing:1px}
+  @media(max-width:820px){.sec-head .right{display:none}}
+
+  /* insight callout */
+  .insight{
+    border-left:3px solid var(--teal);background:linear-gradient(90deg,var(--teal-soft),transparent 70%);
+    padding:22px 26px;border-radius:0 var(--radius) var(--radius) 0;margin:40px 0;
+  }
+  .insight .kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--teal);text-transform:uppercase}
+  .insight p{margin-top:8px;font-size:18px;line-height:1.7;color:var(--ink);font-weight:500}
+  .insight p em{font-style:normal;color:var(--amber);font-weight:700}
+
+  /* two column */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:860px){.cols{grid-template-columns:1fr;gap:36px}}
+
+  /* donut */
+  .donut-wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+  .donut{width:230px;height:230px;border-radius:50%;position:relative;flex-shrink:0;
+    background:conic-gradient(
+      var(--teal) 0 58.3%,
+      var(--ice) 58.3% 74.9%,
+      var(--violet) 74.9% 90.0%,
+      var(--amber) 90.0% 96.5%,
+      var(--coral) 96.5% 99.5%,
+      var(--muted-2) 99.5% 100%
+    );
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);
+  }
+  .donut::after{content:"";position:absolute;inset:52px;border-radius:50%;background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+  .donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;text-align:center}
+  .donut .center .big{font-family:var(--font-mono);font-size:42px;font-weight:600;line-height:1;letter-spacing:-1px}
+  .donut .center .small{font-size:12px;color:var(--muted);margin-top:6px}
+  .legend{flex:1;min-width:220px;display:flex;flex-direction:column;gap:12px}
+  .legend .row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
+  .legend .row .l{display:flex;align-items:center;gap:10px;color:var(--ink-2)}
+  .legend .sw{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+  .legend .row .v{font-family:var(--font-mono);color:var(--ink);font-size:13px}
+  .legend .row .v small{color:var(--muted);font-weight:400}
+
+  /* bars (horizontal) */
+  .bars{display:flex;flex-direction:column;gap:14px}
+  .bar-row{display:grid;grid-template-columns:96px 1fr 64px;align-items:center;gap:14px}
+  @media(max-width:640px){.bar-row{grid-template-columns:76px 1fr 52px;gap:10px}}
+  .bar-label{font-size:13px;color:var(--ink-2);text-align:right;white-space:nowrap}
+  .bar-track{height:22px;background:var(--surface-2);border-radius:3px;position:relative;overflow:hidden}
+  .bar-fill{height:100%;border-radius:3px;transition:width 1s cubic-bezier(.2,.7,.2,1);position:relative}
+  .bar-fill.teal{background:linear-gradient(90deg,rgba(11,150,114,.35),var(--teal))}
+  .bar-fill.amber{background:linear-gradient(90deg,rgba(184,119,31,.35),var(--amber))}
+  .bar-fill.coral{background:linear-gradient(90deg,rgba(197,73,47,.35),var(--coral))}
+  .bar-fill.ice{background:linear-gradient(90deg,rgba(63,111,181,.3),var(--ice))}
+  .bar-fill.muted{background:linear-gradient(90deg,#c6cdc4,#909a90)}
+  .bar-val{font-family:var(--font-mono);font-size:13px;color:var(--ink);text-align:left}
+  .bar-val small{color:var(--muted)}
+
+  /* multiplier bars with baseline */
+  .mult .bar-track{height:26px}
+  .baseline{position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--muted);z-index:2}
+
+  /* line chart svg */
+  .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .chart-card .cap{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+  .chart-card .ttl{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:20px}
+
+  /* table */
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .tbl td{padding:13px 12px;border-bottom:1px solid var(--line-soft);color:var(--ink-2)}
+  .tbl td.num,.tbl th.num{text-align:right;font-family:var(--font-mono)}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl td b{color:var(--ink);font-weight:600}
+  .tbl .hl{background:var(--teal-soft)}
+  .tbl .hl td{color:var(--ink)}
+
+  /* segment cards */
+  .seg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:1020px){.seg-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.seg-grid{grid-template-columns:1fr}}
+  .seg-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+  .seg-card:hover{transform:translateY(-4px);border-color:#3a443e}
+  .seg-card .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .seg-name{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--ink)}
+  .seg-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.5px;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .tag-high{background:var(--coral-soft);color:var(--coral)}
+  .tag-mid{background:var(--amber-soft);color:var(--amber)}
+  .tag-low{background:var(--ice-soft);color:var(--ice)}
+  .tag-none{background:rgba(139,149,142,.14);color:var(--muted)}
+  .seg-card .metric{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:12px}
+  .seg-card .metric .k{font-size:11px;color:var(--muted);letter-spacing:.5px}
+  .seg-card .metric .val{font-family:var(--font-mono);font-size:15px;color:var(--ink);font-weight:600}
+  .seg-card .metric .val small{font-size:11px;color:var(--muted);font-weight:400}
+  .seg-card .firms{font-size:12px;color:var(--muted);line-height:1.6}
+  .seg-card .firms b{color:var(--ink-2);font-weight:600}
+  .seg-card .judge{font-size:13px;color:var(--ink-2);line-height:1.65;margin-top:auto}
+  .seg-card .judge b{color:var(--ink)}
+
+  /* three layer */
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:820px){.layers{grid-template-columns:1fr}}
+  .layer{background:var(--surface);padding:28px}
+  .layer .step{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--amber)}
+  .layer h3{font-family:var(--font-display);font-weight:700;font-size:20px;margin:12px 0 10px}
+  .layer p{font-size:13px;color:var(--muted);line-height:1.7}
+
+  /* split viz CIS */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:640px){.split{grid-template-columns:1fr}}
+  .split .side{padding:30px}
+  .split .side:first-child{background:var(--surface)}
+  .split .side:last-child{background:var(--surface-2)}
+  .split .cap{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:1px}
+  .split .big{font-family:var(--font-mono);font-size:clamp(38px,5vw,58px);font-weight:600;line-height:1;margin:14px 0 8px;letter-spacing:-1px}
+  .split .desc{font-size:13px;color:var(--muted);line-height:1.7}
+  .split .big.good{color:var(--teal)}
+  .split .big.bad{color:var(--amber)}
+
+  /* decision trio */
+  .decisions{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.decisions{grid-template-columns:1fr}}
+  .decision{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;border-top:3px solid var(--line)}
+  .decision.t1{border-top-color:var(--amber)}
+  .decision.t2{border-top-color:var(--teal)}
+  .decision.t3{border-top-color:var(--coral)}
+  .decision h3{font-size:16px;font-weight:700;margin-bottom:8px}
+  .decision .rule{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:1px}
+  .decision p{font-size:13px;color:var(--ink-2);line-height:1.7;margin-top:10px}
+
+  /* method */
+  .method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:700px){.method-grid{grid-template-columns:1fr}}
+  .method{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .method .ic{font-family:var(--font-mono);font-size:12px;color:var(--teal);letter-spacing:1px}
+  .method h4{font-size:15px;font-weight:700;margin:8px 0 6px}
+  .method p{font-size:13px;color:var(--muted);line-height:1.7}
+
+  /* limitation list */
+  .limits{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .limit{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+  .limit:last-child{border-bottom:none}
+  .limit .idx{font-family:var(--font-mono);font-size:12px;color:var(--amber);flex-shrink:0;padding-top:2px}
+  .limit p{font-size:14px;color:var(--ink-2);line-height:1.7}
+  .limit p b{color:var(--ink)}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:60px 0 80px;background:var(--bg-2)}
+  footer .fine{font-size:12px;color:var(--muted);line-height:1.9;max-width:820px}
+  footer .brand-line{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+  footer .brand-line .b{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600}
+  footer .brand-line .b .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  footer .brand-line .stamp{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--muted)}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}
+  .reveal.d2{transition-delay:.16s}
+  .reveal.d3{transition-delay:.24s}
+  .reveal.d4{transition-delay:.32s}
+
+  .tagline-note{font-size:13px;color:var(--muted-2);margin-top:8px;font-family:var(--font-mono)}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="brand"><span class="dot"></span><span>半导体国产化 · 供给格局判断</span></div>
+  <div class="links">
+    <a href="#summary">核心判断</a>
+    <a href="#landscape">供给全景</a>
+    <a href="#scarcity">稀缺环节</a>
+    <a href="#framework">判断框架</a>
+    <a href="#deepdive">逐环节</a>
+    <a href="#method">方法论</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap inner">
+    <span class="eyebrow">行业判断报告 · Semiconductor <span class="sep"></span> 2026</span>
+    <h1>设计拥挤，<br>材料稀缺，<span class="accent">先进制程受制</span></h1>
+    <p class="standfirst">
+      一份基于 <b>199 家 A 股与港股上市公司</b>的产业链供给格局判断。它直接回答一个问题：
+      中国半导体的「国产替代」，究竟<em style="color:var(--teal);font-style:normal">强在哪</em>、
+      <em style="color:var(--amber);font-style:normal">卡在哪</em>。
+    </p>
+    <div class="meta">
+      <span>样本：199 家上市主体</span>
+      <span>口径：21 个细分赛道</span>
+      <span>基准：2026 半年报 + 2025 年报</span>
+    </div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="num">199</div>
+        <div class="label"><b>纳入主体</b>，覆盖设计 / 设备 / 材料 / 代工 / 封测五大环节</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-teal">116<small> 家</small></div>
+        <div class="label"><b>芯片设计</b>占 58.3%，供给一端独大</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-amber">8<small> 个</small></div>
+        <div class="label"><b>关键环节</b>供给稀薄，集中于材料与制造</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-coral">7<small> 个</small></div>
+        <div class="label"><b>构成真实替代约束</b>，另有 1 个「稀薄但不卡」</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</header>
+
+<!-- SUMMARY -->
+<section class="sec" id="summary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">EXECUTIVE SUMMARY</div>
+        <h2 class="sec-title">先看结论：真正的问题不在设计，在材料与先进制程</h2>
+      </div>
+      <div class="right">结论先行 · 证据后置</div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">一句话判断</div>
+      <p>中国半导体的上市供给高度向「设计」一端集中；<em>真正的国产替代约束</em>，集中在关键材料与先进制程——而非设计环节本身。</p>
+    </div>
+
+    <div class="cols">
+      <div>
+        <div class="donut-wrap reveal">
+          <div class="donut">
+            <div class="center"><span class="big">199</span><span class="small">家上市主体</span></div>
+          </div>
+          <div class="legend">
+            <div class="row"><span class="l"><span class="sw" style="background:var(--teal)"></span>芯片设计</span><span class="v">116 <small>58.3%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--ice)"></span>半导体设备</span><span class="v">33 <small>16.6%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--violet)"></span>半导体材料</span><span class="v">30 <small>15.1%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--amber)"></span>封装测试</span><span class="v">13 <small>6.5%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--coral)"></span>晶圆代工</span><span class="v">6 <small>3.0%</small></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="chart-card">
+          <div class="cap">三大核心发现</div>
+          <div class="ttl">把「龙头描述」升级为「供给格局判断」后，浮现出三个结构性结论</div>
+          <div class="bars">
+            <div class="bar-row">
+              <div class="bar-label">结构失衡</div>
+              <div class="bar-track"><div class="bar-fill teal" style="width:90%"></div></div>
+              <div class="bar-val">6.1×</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">材料稀缺</div>
+              <div class="bar-track"><div class="bar-fill amber" style="width:72%"></div></div>
+              <div class="bar-val">31 家</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">真实约束</div>
+              <div class="bar-track"><div class="bar-fill coral" style="width:62%"></div></div>
+              <div class="bar-val">7 / 8</div>
+            </div>
+          </div>
+          <p style="margin-top:18px;font-size:13px;color:var(--muted);line-height:1.7">
+            ① 设计主体是「代工 + 封测」合计的 <b style="color:var(--ink)">6.1 倍</b>；
+            ② 8 个关键稀缺环节合计仅 <b style="color:var(--ink)">31 家</b>，低于「逻辑 SoC」单一赛道；
+            ③ 其中 <b style="color:var(--ink)">7 个</b>有独立的壁垒与外部依赖证据，构成真实替代约束。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01 value -->
+<section class="sec alt" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">01 · PURPOSE &amp; VALUE</div>
+        <h2 class="sec-title">研究问题与价值</h2>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="reveal">
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.85">
+          半导体是中美科技博弈的<b style="color:var(--ink)">核心卡点</b>，国产替代（自主可控）是国家战略。
+          但「强在哪、缺在哪」这个问题，长期停留在对几十家龙头的印象式描述上——这不足以支撑资源配置与投资判断。
+        </p>
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.85;margin-top:18px">
+          本报告把样本从「几十家龙头」扩大到 <b style="color:var(--teal)">199 家上市主体</b>，
+          用「主体数量 → 资本壁垒 → 外部依赖」三层证据，把两个常被混为一谈的概念严格分开：
+        </p>
+      </div>
+      <div class="reveal d1">
+        <div class="chart-card">
+          <div class="cap">口径纪律 · 全文一致</div>
+          <div class="ttl">本报告统计什么，不统计什么</div>
+          <div class="limits" style="border:none;background:transparent">
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">是</div>
+              <p><b>上市主体数量分布</b>——一个可量化、可复现的结构事实。</p>
+            </div>
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">否</div>
+              <p><b>国产化率</b>——本报告不声称任何「国产化率」，也不把「供给稀薄」等同于「卡脖子」。</p>
+            </div>
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">边界</div>
+              <p>结论仅对<b>上市主体</b>成立，未上市创业公司与海外主体不在样本内。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 landscape -->
+<section class="sec" id="landscape">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">02 · THE LANDSCAPE</div>
+        <h2 class="sec-title">全景：供给明显向设计端倾斜</h2>
+      </div>
+      <div class="right">199 家 · 五环节</div>
+    </div>
+
+    <div class="cols">
+      <div class="chart-card reveal">
+        <div class="cap">产业链主体结构</div>
+        <div class="ttl">设计 116 家，是「代工 + 封测」19 家的 6.1 倍</div>
+        <div class="donut-wrap" style="gap:28px">
+          <div class="donut" style="width:190px;height:190px">
+            <div class="center"><span class="big" style="font-size:34px">6.1×</span><span class="small">设计 / 制造</span></div>
+          </div>
+          <div class="legend">
+            <div class="row"><span class="l"><span class="sw" style="background:var(--teal)"></span>芯片设计</span><span class="v">116 <small>58.3%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--ice)"></span>半导体设备</span><span class="v">33 <small>16.6%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--violet)"></span>半导体材料</span><span class="v">30 <small>15.1%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--amber)"></span>封装测试</span><span class="v">13 <small>6.5%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--coral)"></span>晶圆代工</span><span class="v">6 <small>3.0%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--muted-2)"></span>未归类</span><span class="v">1 <small>0.5%</small></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card reveal d1">
+        <div class="cap">设计内部细分 · 116 家</div>
+        <div class="ttl">逻辑与模拟两大赛道占设计主体的 55.2%</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">逻辑 SoC</div><div class="bar-track"><div class="bar-fill teal" style="width:100%"></div></div><div class="bar-val">38 <small>32.8%</small></div></div>
+          <div class="bar-row"><div class="bar-label">模拟芯片</div><div class="bar-track"><div class="bar-fill teal" style="width:68%"></div></div><div class="bar-val">26 <small>22.4%</small></div></div>
+          <div class="bar-row"><div class="bar-label">功率半导体</div><div class="bar-track"><div class="bar-fill ice" style="width:47%"></div></div><div class="bar-val">18 <small>15.5%</small></div></div>
+          <div class="bar-row"><div class="bar-label">存储芯片</div><div class="bar-track"><div class="bar-fill ice" style="width:29%"></div></div><div class="bar-val">11 <small>9.5%</small></div></div>
+          <div class="bar-row"><div class="bar-label">射频芯片</div><div class="bar-track"><div class="bar-fill ice" style="width:21%"></div></div><div class="bar-val">8 <small>6.9%</small></div></div>
+          <div class="bar-row"><div class="bar-label">传感器 / MCU / 光芯片</div><div class="bar-track"><div class="bar-fill muted" style="width:11%"></div></div><div class="bar-val">4 <small>3.4%</small></div></div>
+          <div class="bar-row"><div class="bar-label">图像传感器 CIS</div><div class="bar-track"><div class="bar-fill muted" style="width:8%"></div></div><div class="bar-val">3 <small>2.6%</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">结构性观察</div>
+      <p>资本市场「看得见」的供给结构存在显著不均衡——制造与材料的主体密度，远低于设计侧。这是事实，不是结论。</p>
+    </div>
+
+    <div class="cols" style="margin-top:16px">
+      <div class="chart-card reveal">
+        <div class="cap">上市板块 · 199 家</div>
+        <div class="ttl">科创板是绝对主通道（62.3%）</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">科创板</div><div class="bar-track"><div class="bar-fill teal" style="width:100%"></div></div><div class="bar-val">124 <small>62.3%</small></div></div>
+          <div class="bar-row"><div class="bar-label">创业板</div><div class="bar-track"><div class="bar-fill ice" style="width:30%"></div></div><div class="bar-val">37 <small>18.6%</small></div></div>
+          <div class="bar-row"><div class="bar-label">主板</div><div class="bar-track"><div class="bar-fill ice" style="width:25%"></div></div><div class="bar-val">31 <small>15.6%</small></div></div>
+          <div class="bar-row"><div class="bar-label">港股</div><div class="bar-track"><div class="bar-fill amber" style="width:6%"></div></div><div class="bar-val">7 <small>3.5%</small></div></div>
+        </div>
+      </div>
+      <div class="chart-card reveal d1">
+        <div class="cap">市值分层 · 199 家</div>
+        <div class="ttl">中市值主导，小市值占四分之一</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">中 100–1000亿</div><div class="bar-track"><div class="bar-fill teal" style="width:100%"></div></div><div class="bar-val">120 <small>60.3%</small></div></div>
+          <div class="bar-row"><div class="bar-label">小 &lt;100亿</div><div class="bar-track"><div class="bar-fill amber" style="width:42%"></div></div><div class="bar-val">51 <small>25.6%</small></div></div>
+          <div class="bar-row"><div class="bar-label">大 ≥1000亿</div><div class="bar-track"><div class="bar-fill ice" style="width:23%"></div></div><div class="bar-val">28 <small>14.1%</small></div></div>
+        </div>
+        <p style="margin-top:16px;font-size:12px;color:var(--muted);line-height:1.7">旧的「龙头白名单」天然不含小市值主体，扩大样本后 51 家小市值主体才浮出水面——这正是全量判断的价值所在。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 scarcity -->
+<section class="sec alt" id="scarcity">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">03 · WHERE SUPPLY IS THIN</div>
+        <h2 class="sec-title">核心发现：8 个关键环节供给稀薄</h2>
+      </div>
+      <div class="right">稀缺 ≠ 卡脖子</div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">数量倒挂</div>
+      <p>光刻胶、电子特气、靶材、湿电子化学品、CMP 五类关键材料，叠加代工、CIS、传感器——<em>合计 31 家</em>，仍低于「逻辑 SoC」单一赛道的 38 家。</p>
+    </div>
+
+    <div class="chart-card reveal">
+      <div class="cap">主体数量 · 稀缺环节 vs 对照</div>
+      <div class="ttl">稀缺环节的上市主体密度，远低于设计侧拥挤赛道</div>
+      <div class="bars">
+        <div class="bar-row"><div class="bar-label">逻辑 SoC（对照）</div><div class="bar-track"><div class="bar-fill muted" style="width:100%"></div></div><div class="bar-val">38 <small>19.1%</small></div></div>
+        <div class="bar-row"><div class="bar-label">晶圆代工</div><div class="bar-track"><div class="bar-fill coral" style="width:16%"></div></div><div class="bar-val">6 <small>3.0%</small></div></div>
+        <div class="bar-row"><div class="bar-label">光刻胶</div><div class="bar-track"><div class="bar-fill coral" style="width:13%"></div></div><div class="bar-val">5 <small>2.5%</small></div></div>
+        <div class="bar-row"><div class="bar-label">电子特气</div><div class="bar-track"><div class="bar-fill coral" style="width:11%"></div></div><div class="bar-val">4 <small>2.0%</small></div></div>
+        <div class="bar-row"><div class="bar-label">溅射靶材</div><div class="bar-track"><div class="bar-fill coral" style="width:11%"></div></div><div class="bar-val">4 <small>2.0%</small></div></div>
+        <div class="bar-row"><div class="bar-label">传感器</div><div class="bar-track"><div class="bar-fill amber" style="width:11%"></div></div><div class="bar-val">4 <small>2.0%</small></div></div>
+        <div class="bar-row"><div class="bar-label">湿电子化学品</div><div class="bar-track"><div class="bar-fill coral" style="width:8%"></div></div><div class="bar-val">3 <small>1.5%</small></div></div>
+        <div class="bar-row"><div class="bar-label">图像传感器 CIS</div><div class="bar-track"><div class="bar-fill amber" style="width:8%"></div></div><div class="bar-val">3 <small>1.5%</small></div></div>
+        <div class="bar-row"><div class="bar-label">CMP 材料</div><div class="bar-track"><div class="bar-fill coral" style="width:5%"></div></div><div class="bar-val">2 <small>1.0%</small></div></div>
+      </div>
+      <p style="margin-top:18px;font-size:12px;color:var(--muted);line-height:1.7">颜色区分：<span style="color:var(--coral)">■ 红色</span> 为稀缺且后续构成替代约束的环节，<span style="color:var(--amber)">■ 琥珀色</span> 为稀缺但证据不足以判约束的环节。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04 framework -->
+<section class="sec" id="framework">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">04 · THE FRAMEWORK</div>
+        <h2 class="sec-title">判断方法：稀薄，不等于卡脖子</h2>
+      </div>
+      <div class="right">三层判断 · 逐级收紧</div>
+    </div>
+
+    <p class="reveal" style="max-width:820px;color:var(--ink-2);font-size:16px;line-height:1.85;margin-bottom:36px">
+      本报告不把「主体数量少」直接等同于「卡脖子」。相反，它用一套<b style="color:var(--ink)">三层判断法</b>，
+      每一层都需要独立的证据才能递进——数据支持到哪一层，结论就写到哪一层。
+    </p>
+
+    <div class="layers reveal">
+      <div class="layer">
+        <div class="step">第一层 · 事实</div>
+        <h3>供给稀薄</h3>
+        <p>上市主体数量少。这是可量化的统计事实，仅此而已，不附带任何战略含义。</p>
+      </div>
+      <div class="layer">
+        <div class="step">第二层 · 结构</div>
+        <h3>结构性供给约束</h3>
+        <p>在「稀薄」之上，叠加资本投入、技术或认证壁垒的独立证据，才构成「高壁垒稀缺环节」。</p>
+      </div>
+      <div class="layer">
+        <div class="step">第三层 · 战略</div>
+        <h3>实际替代约束</h3>
+        <p>再叠加进口依赖、国产份额、客户认证或技术差距证据，才定性为「真实的国产替代约束」。</p>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">关键拆分 · 最容易被误读的一点</div>
+      <p>稀缺环节的壁垒是<em>「资本形成」</em>——建晶圆厂、建产线的天量资本开支，<em>而不是「研发投入」</em>。8 个稀缺环节的研发强度，无一高于设计侧。</p>
+    </div>
+
+    <div class="cols" style="margin-top:8px">
+      <div class="chart-card reveal">
+        <div class="cap">资本投入强度 · 相对设计侧基准（1.0×）</div>
+        <div class="ttl">壁垒是「资本形成」，不是「研发费用率」</div>
+        <div class="bars mult">
+          <div class="bar-row"><div class="bar-label">晶圆代工</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill coral" style="width:100%"></div></div><div class="bar-val">10.6×</div></div>
+          <div class="bar-row"><div class="bar-label">光刻胶</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill coral" style="width:75%"></div></div><div class="bar-val">8.0×</div></div>
+          <div class="bar-row"><div class="bar-label">电子特气</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill amber" style="width:31%"></div></div><div class="bar-val">3.3×</div></div>
+          <div class="bar-row"><div class="bar-label">湿化学品</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill amber" style="width:31%"></div></div><div class="bar-val">3.3×</div></div>
+          <div class="bar-row"><div class="bar-label">CMP 材料</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill amber" style="width:23%"></div></div><div class="bar-val">2.4×</div></div>
+          <div class="bar-row"><div class="bar-label">溅射靶材</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill amber" style="width:16%"></div></div><div class="bar-val">1.7×</div></div>
+          <div class="bar-row"><div class="bar-label">CIS</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill ice" style="width:10%"></div></div><div class="bar-val">1.1×</div></div>
+          <div class="bar-row"><div class="bar-label">传感器</div><div class="bar-track"><span class="baseline" style="left:9.4%"></span><div class="bar-fill muted" style="width:6%"></div></div><div class="bar-val">0.63×</div></div>
+        </div>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">竖线为设计侧基准（1.0×）。传感器低于基准——它是唯一「既稀薄、又不具备资本壁垒」的环节，因此不能与其他 7 个环节混为一谈。</p>
+      </div>
+      <div class="chart-card reveal d1">
+        <div class="cap">全球半导体销售额 · SIA</div>
+        <div class="ttl">行业本身在高增长，供给判断需要放在这个背景下</div>
+        <svg viewBox="0 0 460 220" width="100%" style="margin-top:8px">
+          <defs>
+            <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#0b9672" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#0b9672" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="180" x2="460" y2="180" stroke="#dde3da" stroke-width="1"/>
+          <line x1="0" y1="120" x2="460" y2="120" stroke="#e7ece3" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="0" y1="60" x2="460" y2="60" stroke="#e7ece3" stroke-width="1" stroke-dasharray="3 4"/>
+          <polygon points="20,154 235,96 440,20 440,180 20,180" fill="url(#area)"/>
+          <polyline points="20,154 235,96 440,20" fill="none" stroke="#0b9672" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="20" cy="154" r="5" fill="#ffffff" stroke="#0b9672" stroke-width="2.5"/>
+          <circle cx="235" cy="96" r="5" fill="#ffffff" stroke="#0b9672" stroke-width="2.5"/>
+          <circle cx="440" cy="20" r="6" fill="#0b9672"/>
+          <text x="20" y="172" fill="#99a299" font-size="11" font-family="SF Mono,Menlo,monospace">2023 · 526.8</text>
+          <text x="210" y="88" fill="#3c433d" font-size="11" font-family="SF Mono,Menlo,monospace">2024 · 630.5</text>
+          <text x="350" y="14" fill="#0b9672" font-size="12" font-family="SF Mono,Menlo,monospace" font-weight="600">2025 · 791.7</text>
+          <text x="0" y="210" fill="#99a299" font-size="10" font-family="SF Mono,Menlo,monospace">单位：十亿美元 · 全球半导体销售额（+25.6% YoY）</text>
+        </svg>
+        <div style="display:flex;gap:24px;margin-top:14px;flex-wrap:wrap">
+          <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">14,313<span style="font-size:12px;color:var(--muted)"> 亿元</span></div><div style="font-size:11px;color:var(--muted)">中国 IC 产业销售额 · 2024</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">90%</div><div style="font-size:11px;color:var(--muted)">晶圆代工 CR5 · 2024Q4</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">4,843<span style="font-size:12px;color:var(--muted)"> 亿块</span></div><div style="font-size:11px;color:var(--muted)">中国 IC 产量 · 2025</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05 deep dive -->
+<section class="sec alt" id="deepdive">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">05 · SEGMENT-BY-SEGMENT</div>
+        <h2 class="sec-title">逐环节判断：7 个约束，1 个例外</h2>
+      </div>
+      <div class="right">证据分层 · 诚实标注</div>
+    </div>
+    <p class="reveal" style="max-width:820px;color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:36px">
+      8 个稀薄环节逐一过检：<b style="color:var(--ink)">7 个</b>命中独立的外部依赖证据、构成真实替代约束；
+      <b style="color:var(--ink)">传感器</b>是唯一例外——它稀薄，但既无资本壁垒、也无外部依赖证据。
+    </p>
+
+    <div class="seg-grid reveal">
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">光刻胶</span><span class="seg-tag tag-high">高约束</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">5 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">8.0×</span></div>
+        <div class="metric"><span class="k">国产份额 / 依赖</span><span class="val">≈8% <small>高端依赖 &gt;90%</small></span></div>
+        <div class="firms"><b>代表</b>：雅克科技、清溢光电、路维光电、恒坤新材、龙图光罩</div>
+        <div class="judge"><b>判断</b>：半导体用国产份额约 8%，日本四家占全球 76%，客户认证 2–3 年——高壁垒叠加高依赖，替代周期长。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">电子特气</span><span class="seg-tag tag-high">高约束</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">4 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">3.3×</span></div>
+        <div class="metric"><span class="k">国产份额 / 依赖</span><span class="val">&lt;25% <small>高端几乎全依赖</small></span></div>
+        <div class="firms"><b>代表</b>：华特气体、金宏气体、南大光电、中船特气</div>
+        <div class="judge"><b>判断</b>：国产份额不足四分之一，新供应商认证 1–3 年，高纯品类仍被海外主导。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">溅射靶材</span><span class="seg-tag tag-mid">高端约束</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">4 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">1.7×</span></div>
+        <div class="metric"><span class="k">整体份额 / 高端</span><span class="val">近四成 <small>高端日美主导</small></span></div>
+        <div class="firms"><b>代表</b>：江丰电子、有研新材、阿石创、欧莱新材</div>
+        <div class="judge"><b>判断</b>：整体市占率已从个位数升至接近四成，但 7nm 以下 / HBM 高端靶材仍由日矿金属、霍尼韦尔、东曹主导。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">湿电子化学品</span><span class="seg-tag tag-mid">高端约束</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">3 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">3.3×</span></div>
+        <div class="metric"><span class="k">整体 / G5 级</span><span class="val">50–60% <small>G5 仅 25–30%</small></span></div>
+        <div class="firms"><b>代表</b>：晶瑞电材、上海新阳、艾森股份</div>
+        <div class="judge"><b>判断</b>：整体国产份额已不低，约束集中在最高纯度的 G5 级高端品类。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">CMP 材料</span><span class="seg-tag tag-mid">高端约束</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">2 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">2.4×</span></div>
+        <div class="metric"><span class="k">抛光垫集中度</span><span class="val">海外 &gt;50%</span></div>
+        <div class="firms"><b>代表</b>：鼎龙股份、安集科技</div>
+        <div class="judge"><b>判断</b>：抛光垫由陶氏 / 杜邦主导全球过半份额，高端品类替代约束明显。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">图像传感器 CIS</span><span class="seg-tag tag-low">金额约束</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">3 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">1.1×</span></div>
+        <div class="metric"><span class="k">出货量 / 销售额</span><span class="val">55%+ <small>vs ≈25%</small></span></div>
+        <div class="firms"><b>代表</b>：格科微、豪威集团（韦尔）、思特威</div>
+        <div class="judge"><b>判断</b>：「以量取胜、金额落后」——出货份额过半，但高价值销售额份额仍明显落后。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">晶圆代工</span><span class="seg-tag tag-high">制程约束</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">6 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">10.6×</span></div>
+        <div class="metric"><span class="k">制程差距</span><span class="val">2–2.5 <small>代</small></span></div>
+        <div class="firms"><b>代表</b>：中芯国际、华虹宏力、晶合集成、长鑫科技</div>
+        <div class="judge"><b>判断</b>：成熟制程供给充分、利用率超负荷；约束在先进制程——EUV 光刻机受制，与台积电差 2–2.5 代。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">传感器</span><span class="seg-tag tag-none">尚不足以判断</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">4 <small>家</small></span></div>
+        <div class="metric"><span class="k">资本壁垒</span><span class="val">0.63×</span></div>
+        <div class="metric"><span class="k">外部依赖</span><span class="val">无独立证据</span></div>
+        <div class="firms"><b>代表</b>：汇顶科技、睿创微纳、敏芯股份、芯动联科</div>
+        <div class="judge"><b>判断</b>：主体稀薄但资本强度低于基准，无独立壁垒证据——「稀薄」不等于「卡脖子」的反例。</div>
+      </div>
+    </div>
+
+    <!-- CIS split -->
+    <div class="cols" style="margin-top:48px">
+      <div class="reveal">
+        <div class="split">
+          <div class="side">
+            <div class="cap">CIS · 出货量口径</div>
+            <div class="big good">55%+</div>
+            <div class="desc">国产三家手机 CMOS 出货份额已从不足 40% 跃升至 55% 以上——「量」替代已过半。</div>
+          </div>
+          <div class="side">
+            <div class="cap">CIS · 销售额口径</div>
+            <div class="big bad">≈25%</div>
+            <div class="desc">索尼 CIS 营收仍近全球半数；国产三家 2024 年 CIS 营收合计仅约索尼一家三分之一。</div>
+          </div>
+        </div>
+        <p style="margin-top:14px;font-size:13px;color:var(--muted);line-height:1.7">CIS 的约束是「价值端替代不足」，而非「整体供给短缺」——数量替代领先、金额替代落后。</p>
+      </div>
+      <div class="chart-card reveal d1">
+        <div class="cap">晶圆代工 · 成熟 vs 先进</div>
+        <div class="ttl">依赖发生在「先进制程」，不是「产能总量」</div>
+        <table class="tbl">
+          <tr><th>指标</th><th class="num">中国大陆</th><th class="num">台积电</th></tr>
+          <tr><td>最先进已量产制程</td><td class="num">12nm / 7nm 风险试产</td><td class="num">3nm / 2nm</td></tr>
+          <tr><td>7nm 以下收入占比</td><td class="num">华虹 40nm 以上为主</td><td class="num">近 70%</td></tr>
+          <tr><td>核心瓶颈</td><td class="num">无法获得 EUV</td><td class="num">EUV 可用</td></tr>
+          <tr class="hl"><td>单片均价</td><td class="num"><b>约 7,100 元</b></td><td class="num"><b>约 27,600 元</b></td></tr>
+        </table>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">成熟制程产能供给充分：中芯月产能 102 万片、利用率 93%；华虹 106%、晶合超 103%。中国大陆 8 英寸占全球约 22%。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06 decisions -->
+<section class="sec" id="decisions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">06 · WHAT TO DO</div>
+        <h2 class="sec-title">三类约束，对应三类决策</h2>
+      </div>
+      <div class="right">决策含义 · 随约束类型分化</div>
+    </div>
+    <div class="decisions reveal">
+      <div class="decision t1">
+        <div class="rule">资本形成壁垒</div>
+        <h3>关注产能形成</h3>
+        <p>靶材、CMP、湿化学品等环节的壁垒在「建产线」，决策重点应是有效产能落地与良率爬坡，而非单纯看研发投入。</p>
+      </div>
+      <div class="decision t2">
+        <div class="rule">客户认证壁垒</div>
+        <h3>关注客户锁定与耐心资本</h3>
+        <p>光刻胶、电子特气的认证周期 2–3 年，认证通过即锁定供应关系——替代能否兑现取决于认证进度与客户导入，而非当前份额数字。</p>
+      </div>
+      <div class="decision t3">
+        <div class="rule">设备依赖</div>
+        <h3>关注制程突破</h3>
+        <p>晶圆代工的约束在先进制程、根子在 EUV 光刻机的上游设备限制——决策应盯住设备可得性与国产设备突破，而非产能总量。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07 counterfactuals -->
+<section class="sec alt" id="boundary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">07 · BOUNDARIES</div>
+        <h2 class="sec-title">边界与辨析</h2>
+      </div>
+      <div class="right">口径边界 · 关键辨析</div>
+    </div>
+    <div class="method-grid reveal">
+      <div class="method">
+        <div class="ic">反例 · 传感器</div>
+        <h4>稀薄，但未必卡脖子</h4>
+        <p>传感器主体仅个位数，却因资本投入强度低于基准、且无外部依赖证据，无法判定为替代约束。它证明了本报告的判断方法能识别「不具备壁垒」的环节——而非把所有稀薄环节一律判定为约束。</p>
+      </div>
+      <div class="method">
+        <div class="ic">边界案例 · CIS</div>
+        <h4>数量替代领先，金额替代落后</h4>
+        <p>国产手机 CMOS 出货份额已超 55%，但按销售额口径海外仍占全球 75% 以上。单一「国产化率」无法捕捉这种「以量取胜」的结构差异。</p>
+      </div>
+      <div class="method">
+        <div class="ic">专项依赖 · 晶圆代工</div>
+        <h4>是「制程依赖」，不是「产能稀缺」</h4>
+        <p>大陆成熟制程已是全球主要供应基地（8 英寸占全球约 22%），供给充分。约束被精准锁定在「先进制程的外部设备依赖」上。</p>
+      </div>
+      <div class="method">
+        <div class="ic">口径边界 · 上市主体</div>
+        <h4>结论不外推到全行业</h4>
+        <p>未上市创业公司、非上市 IDM 与海外代工主体不在样本内，因此结论只对「上市主体」这一口径成立，不声称代表整个中国半导体行业。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 08 method -->
+<section class="sec" id="method">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">08 · METHODOLOGY</div>
+        <h2 class="sec-title">研究方法与数据来源</h2>
+      </div>
+      <div class="right">可复现 · 可核验</div>
+    </div>
+    <div class="method-grid reveal">
+      <div class="method">
+        <div class="ic">样本</div>
+        <h4>199 家上市主体，而非几十家龙头</h4>
+        <p>覆盖设计、设备、材料、代工、封测五大环节、21 个细分赛道，按 2026 半年报「主营构成」的营收占比自动核验细分归类。</p>
+      </div>
+      <div class="method">
+        <div class="ic">壁垒证据</div>
+        <h4>资本投入强度 + 研发强度，双代理</h4>
+        <p>以 2025 年报口径的「购建固定资产等现金 / 营收」度量资本形成，「研发费用 / 营收」度量研发投入，把「高壁垒」拆成两个可测维度。</p>
+      </div>
+      <div class="method">
+        <div class="ic">外部依赖</div>
+        <h4>进口依赖、国产份额、客户认证三类证据</h4>
+        <p>逐环节采集外部证据，并逐条打开来源原文核验；未获原文核验的估计值，一律不作为高精度数据使用。</p>
+      </div>
+      <div class="method">
+        <div class="ic">数据源</div>
+        <h4>权威口径 + 一手公告</h4>
+        <p>行业总量来自 SIA、CSIA、TrendForce、SEMI、国家统计局；主体维度来自上市公司定期报告原文。</p>
+      </div>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:36px">
+      <div class="cap">边界与局限 · 诚实披露</div>
+      <div class="ttl">以下限制不削弱结论，但界定结论的适用范围</div>
+      <div class="limits">
+        <div class="limit"><div class="idx">01</div><p><b>口径</b>：本报告统计「上市主体数量分布」，不是「国产化率」；「供给稀薄」是数量事实，不等同「卡脖子」。</p></div>
+        <div class="limit"><div class="idx">02</div><p><b>样本</b>：仅覆盖上市主体，未上市创业公司、非上市 IDM 与海外主体系统性缺席，结论不可外推至全行业。</p></div>
+        <div class="limit"><div class="idx">03</div><p><b>时点</b>：市值层级为检索时点快照，随股价波动；1000 亿 / 100 亿阈值为研究者设定口径，非监管口径。</p></div>
+        <div class="limit"><div class="idx">04</div><p><b>国产份额</b>：多为第三方公开报告的估计值，单一来源、单一年份，多源数值分歧较大，未做交叉验证的部分不以高精度呈现。</p></div>
+        <div class="limit"><div class="idx">05</div><p><b>统计性质</b>：全部分布为截面快照，无时间序列，不做趋势判断。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-line">
+      <div class="b"><span class="dot"></span>半导体国产化供给格局 · 行业判断报告</div>
+      <div class="stamp">SEMI · 2026 · 结论冻结版</div>
+    </div>
+    <p class="fine">
+      本报告基于公开信息与上市公司定期报告整理，用于行业结构研究与决策参考，不构成任何投资建议。
+      报告统计的是「上市主体数量分布」这一结构事实，不声称任何「国产化率」；「供给稀薄」与「实际替代约束」均基于三层证据的独立判断，而非外部叙事标签。
+      数据来源：SIA、CSIA、TrendForce、SEMI SMG、国家统计局，以及各上市公司 2025 年报 / 2026 半年报。
+    </p>
+  </div>
+</footer>
+
+<script>
+  // scroll progress
+  const progress = document.getElementById('progress');
+  function onScroll(){
+    const h = document.documentElement;
+    const sc = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (sc * 100) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

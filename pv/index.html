@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China PV Supply Chain: No Segment Is Truly Bottlenecked &middot; Industry Judgment Report</title>
+<style>
+  :root{
+    --bg:#f7f7f3;
+    --bg-2:#eef1eb;
+    --surface:#ffffff;
+    --surface-2:#f1f4ee;
+    --line:#dde3da;
+    --line-soft:#e7ece3;
+    --ink:#1b211c;
+    --ink-2:#3c433d;
+    --muted:#68716a;
+    --muted-2:#99a299;
+    --teal:#0b9672;
+    --teal-soft:rgba(11,150,114,.10);
+    --amber:#b8771f;
+    --amber-soft:rgba(184,119,31,.10);
+    --coral:#c5492f;
+    --coral-soft:rgba(197,73,47,.10);
+    --ice:#3f6fb5;
+    --ice-soft:rgba(63,111,181,.10);
+    --violet:#7a5fb8;
+    --violet-soft:rgba(122,95,184,.10);
+    --font-display:"New York","Georgia","Songti SC","STSong","Times New Roman",serif;
+    --font-body:"PingFang SC","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",sans-serif;
+    --font-mono:"SF Mono","Menlo",ui-monospace,"SFMono-Regular","Monaco",monospace;
+    --maxw:1180px;
+    --gutter:clamp(20px,4vw,48px);
+    --radius:8px;
+    --shadow:0 24px 60px -34px rgba(36,46,38,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;line-height:1.75;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:0;overflow-x:hidden;
+  }
+  ::selection{background:var(--teal);color:#fff}
+  a{color:inherit;text-decoration:none}
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--teal),var(--amber));z-index:100;transition:width .12s linear}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);height:60px;background:rgba(247,247,243,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+  .nav .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;letter-spacing:.5px}
+  .nav .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-soft)}
+  .nav .brand span{color:var(--ink-2);font-size:14px}
+  .nav .links{display:flex;gap:22px}
+  .nav .links a{font-size:13px;color:var(--muted);transition:color .2s}
+  .nav .links a:hover{color:var(--ink)}
+  @media(max-width:820px){.nav .links{display:none}}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 72px;position:relative}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 520px at 78% -8%,rgba(11,150,114,.12),transparent 60%),radial-gradient(700px 500px at 8% 108%,rgba(184,119,31,.08),transparent 60%)}
+  .hero .grid-bg{position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 70%)}
+  .hero .inner{position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid var(--line);border-radius:999px;padding:7px 15px;background:rgba(11,150,114,.06)}
+  .eyebrow .sep{width:14px;height:1px;background:var(--teal)}
+  .hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(40px,7vw,88px);line-height:1.08;margin:34px 0 26px;letter-spacing:-.5px}
+  .hero h1 .accent{color:var(--amber)}
+  .hero h1 .teal{color:var(--teal)}
+  .standfirst{max-width:680px;font-size:clamp(16px,1.6vw,19px);color:var(--ink-2);line-height:1.8}
+  .standfirst b{color:var(--ink);font-weight:600}
+  .standfirst em{font-style:normal;color:var(--teal)}
+  .hero .meta{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+  .hero .meta span{display:inline-flex;align-items:center;gap:8px}
+  .hero .meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--muted-2)}
+  .scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scroll-cue .line{width:1px;height:36px;background:linear-gradient(var(--teal),transparent);animation:drop 1.8s ease-in-out infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(0);transform-origin:bottom}}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:56px}
+  .stat{background:var(--surface);padding:28px 26px;transition:background .25s}
+  .stat:hover{background:var(--surface-2)}
+  .stat .num{font-family:var(--font-mono);font-size:clamp(28px,3.4vw,44px);font-weight:600;line-height:1;letter-spacing:-1px}
+  .stat .num small{font-size:.5em;color:var(--muted);font-weight:400;letter-spacing:0}
+  .stat .label{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.5}
+  .stat .label b{color:var(--ink-2);font-weight:600}
+  .stat .tone-teal{color:var(--teal)}
+  .stat .tone-amber{color:var(--amber)}
+  .stat .tone-coral{color:var(--coral)}
+  @media(max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+  .sec{padding:110px 0}
+  .sec.alt{background:var(--bg-2)}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+  .sec-no{font-family:var(--font-mono);font-size:13px;color:var(--amber);letter-spacing:3px}
+  .sec-title{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.4vw,48px);line-height:1.15;letter-spacing:-.5px;margin-top:8px}
+  .sec-sub{max-width:560px;color:var(--muted);font-size:15px;line-height:1.8}
+  .sec-head .right{text-align:right;font-family:var(--font-mono);font-size:11px;color:var(--muted-2);letter-spacing:1px}
+  @media(max-width:820px){.sec-head .right{display:none}}
+  .insight{border-left:3px solid var(--teal);background:linear-gradient(90deg,var(--teal-soft),transparent 70%);padding:22px 26px;border-radius:0 var(--radius) var(--radius) 0;margin:40px 0}
+  .insight .kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--teal);text-transform:uppercase}
+  .insight p{margin-top:8px;font-size:18px;line-height:1.7;color:var(--ink);font-weight:500}
+  .insight p em{font-style:normal;color:var(--amber);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:860px){.cols{grid-template-columns:1fr;gap:36px}}
+  .donut-wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+  .donut{width:230px;height:230px;border-radius:50%;position:relative;flex-shrink:0;background:conic-gradient(var(--teal) 0 27.3%,var(--ice) 27.3% 51.5%,var(--violet) 51.5% 66.7%,var(--amber) 66.7% 78.8%,var(--coral) 78.8% 90.9%,var(--muted-2) 90.9% 100%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+  .donut::after{content:"";position:absolute;inset:52px;border-radius:50%;background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+  .donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;text-align:center}
+  .donut .center .big{font-family:var(--font-mono);font-size:42px;font-weight:600;line-height:1;letter-spacing:-1px}
+  .donut .center .small{font-size:12px;color:var(--muted);margin-top:6px}
+  .legend{flex:1;min-width:220px;display:flex;flex-direction:column;gap:12px}
+  .legend .row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
+  .legend .row .l{display:flex;align-items:center;gap:10px;color:var(--ink-2)}
+  .legend .sw{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+  .legend .row .v{font-family:var(--font-mono);color:var(--ink);font-size:13px}
+  .legend .row .v small{color:var(--muted);font-weight:400}
+  .bars{display:flex;flex-direction:column;gap:14px}
+  .bar-row{display:grid;grid-template-columns:110px 1fr 92px;align-items:center;gap:14px}
+  @media(max-width:640px){.bar-row{grid-template-columns:82px 1fr 66px;gap:10px}}
+  .bar-label{font-size:13px;color:var(--ink-2);text-align:right;white-space:nowrap}
+  .bar-track{height:22px;background:var(--surface-2);border-radius:3px;position:relative;overflow:hidden}
+  .bar-fill{height:100%;border-radius:3px;position:relative}
+  .bar-fill.teal{background:linear-gradient(90deg,rgba(11,150,114,.35),var(--teal))}
+  .bar-fill.amber{background:linear-gradient(90deg,rgba(184,119,31,.35),var(--amber))}
+  .bar-fill.coral{background:linear-gradient(90deg,rgba(197,73,47,.35),var(--coral))}
+  .bar-fill.ice{background:linear-gradient(90deg,rgba(63,111,181,.3),var(--ice))}
+  .bar-fill.violet{background:linear-gradient(90deg,rgba(122,95,184,.3),var(--violet))}
+  .bar-fill.muted{background:linear-gradient(90deg,#c6cdc4,#909a90)}
+  .bar-val{font-family:var(--font-mono);font-size:13px;color:var(--ink);text-align:left}
+  .bar-val small{color:var(--muted)}
+  .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .chart-card .cap{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+  .chart-card .ttl{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:20px}
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl th{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  .tbl td{padding:11px 10px;border-bottom:1px solid var(--line-soft);color:var(--ink-2)}
+  .tbl td.num,.tbl th.num{text-align:right;font-family:var(--font-mono)}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl td b{color:var(--ink);font-weight:600}
+  .tbl .hl td{color:var(--ink)}
+  .seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:1020px){.seg-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.seg-grid{grid-template-columns:1fr}}
+  .seg-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:13px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+  .seg-card:hover{transform:translateY(-4px);border-color:#3a443e}
+  .seg-card .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .seg-name{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--ink)}
+  .seg-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.5px;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .tag-amber{background:var(--amber-soft);color:var(--amber)}
+  .tag-coral{background:var(--coral-soft);color:var(--coral)}
+  .tag-none{background:rgba(139,149,142,.14);color:var(--muted)}
+  .seg-card .metric{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:11px}
+  .seg-card .metric .k{font-size:11px;color:var(--muted);letter-spacing:.5px}
+  .seg-card .metric .val{font-family:var(--font-mono);font-size:14.5px;color:var(--ink);font-weight:600}
+  .seg-card .metric .val small{font-size:11px;color:var(--muted);font-weight:400}
+  .seg-card .judge{font-size:13px;color:var(--ink-2);line-height:1.65;margin-top:auto}
+  .seg-card .judge b{color:var(--ink)}
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:820px){.layers{grid-template-columns:1fr}}
+  .layer{background:var(--surface);padding:28px}
+  .layer .step{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--amber)}
+  .layer h3{font-family:var(--font-display);font-weight:700;font-size:20px;margin:12px 0 10px}
+  .layer p{font-size:13px;color:var(--muted);line-height:1.7}
+  .status-map{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+  @media(max-width:700px){.status-map{grid-template-columns:1fr}}
+  .status{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .status .t{font-family:var(--font-mono);font-size:13px;font-weight:600;margin-bottom:6px}
+  .status p{font-size:12.5px;color:var(--muted);line-height:1.6}
+  .decision-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .decision-item{display:flex;gap:18px;padding:22px 26px;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+  .decision-item:last-child{border-bottom:none}
+  .decision-item .idx{font-family:var(--font-mono);font-size:12px;color:var(--amber);flex-shrink:0;padding-top:2px}
+  .decision-item h4{font-size:15px;font-weight:700;color:var(--ink)}
+  .decision-item p{font-size:13.5px;color:var(--ink-2);line-height:1.7;margin-top:4px}
+  .method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:700px){.method-grid{grid-template-columns:1fr}}
+  .method{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .method .ic{font-family:var(--font-mono);font-size:12px;color:var(--teal);letter-spacing:1px}
+  .method h4{font-size:15px;font-weight:700;margin:8px 0 6px}
+  .method p{font-size:13px;color:var(--muted);line-height:1.7}
+  .limits{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .limit{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+  .limit:last-child{border-bottom:none}
+  .limit .idx{font-family:var(--font-mono);font-size:12px;color:var(--amber);flex-shrink:0;padding-top:2px}
+  .limit p{font-size:14px;color:var(--ink-2);line-height:1.7}
+  .limit p b{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:60px 0 80px;background:var(--bg-2)}
+  footer .fine{font-size:12px;color:var(--muted);line-height:1.9;max-width:820px}
+  footer .brand-line{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+  footer .brand-line .b{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600}
+  footer .brand-line .b .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  footer .brand-line .stamp{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--muted)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}
+  .reveal.d2{transition-delay:.16s}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="brand"><span class="dot"></span><span>PV Supply Chain · Structure Judgment</span></div>
+  <div class="links">
+    <a href="#summary">Key Findings</a>
+    <a href="#landscape">Landscape</a>
+    <a href="#framework">Framework</a>
+    <a href="#deepdive">Segment by Segment</a>
+    <a href="#decisions">Implications</a>
+    <a href="#method">Methodology</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap inner">
+    <span class="eyebrow">Industry Judgment Report · Photovoltaic <span class="sep"></span> 2026</span>
+    <h1>Barriers everywhere,<br><span class="accent">none is truly stuck</span></h1>
+    <p class="standfirst">
+      A supply-chain judgment built on <b>33 A-share and HK-listed PV companies</b>. It answers one question:
+      which segment of the PV value chain is truly supply-locked? The answer is more counterintuitive than instinct — <em>none</em>.
+    </p>
+    <div class="meta">
+      <span>Sample: 33 listed entities</span>
+      <span>Scope: 6 value-chain segments</span>
+      <span>Baseline: 2026 interim + 2025 annual reports</span>
+    </div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="num">33</div>
+        <div class="label"><b>entities</b> across polysilicon / wafer / cell / module / inverter / power-plant</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-teal">6<small> segments</small></div>
+        <div class="label"><b>value-chain segments</b>, all at the &ldquo;structural signal&rdquo; layer</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-coral">0<small> segments</small></div>
+        <div class="label"><b>constitute structural supply constraints</b> &mdash; a negative finding</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-amber">3&times;<small> ratio</small></div>
+        <div class="label"><b>largest-to-smallest segment ratio</b>, a relatively balanced distribution</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</header>
+
+<!-- SUMMARY -->
+<section class="sec" id="summary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">EXECUTIVE SUMMARY</div>
+        <h2 class="sec-title">Read this first: PV has no &ldquo;chokepoint&rdquo;</h2>
+      </div>
+      <div class="right">Conclusion first &middot; evidence after</div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">In one sentence</div>
+      <p>Across the six PV segments, <em>not one</em> has truly formed a &ldquo;supply-locked&rdquo; constraint. The few players, heavy capex, and high concentration we see are all &ldquo;signals,&rdquo; not &ldquo;hard conclusions.&rdquo;</p>
+    </div>
+
+    <div class="cols">
+      <div>
+        <div class="donut-wrap reveal">
+          <div class="donut">
+            <div class="center"><span class="big">33</span><span class="small">listed entities</span></div>
+          </div>
+          <div class="legend">
+            <div class="row"><span class="l"><span class="sw" style="background:var(--teal)"></span>Inverters</span><span class="v">9 <small>27.3%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--ice)"></span>Modules</span><span class="v">8 <small>24.2%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--violet)"></span>Power plants &amp; systems</span><span class="v">5 <small>15.2%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--amber)"></span>Polysilicon</span><span class="v">4 <small>12.1%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--coral)"></span>Wafers</span><span class="v">4 <small>12.1%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--muted-2)"></span>Cells</span><span class="v">3 <small>9.1%</small></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="chart-card">
+          <div class="cap">Three core findings</div>
+          <div class="ttl">Under the evidence, three &ldquo;barrier-like&rdquo; intuitions fall apart</div>
+          <div class="bars">
+            <div class="bar-row">
+              <div class="bar-label">Balanced spread</div>
+              <div class="bar-track"><div class="bar-fill teal" style="width:90%"></div></div>
+              <div class="bar-val">within 3&times;</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Few upstream players</div>
+              <div class="bar-track"><div class="bar-fill amber" style="width:72%"></div></div>
+              <div class="bar-val">a scope effect</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Concentration ≠ barrier</div>
+              <div class="bar-track"><div class="bar-fill coral" style="width:62%"></div></div>
+              <div class="bar-val">outcome, not barrier</div>
+            </div>
+          </div>
+          <p style="margin-top:18px;font-size:13px;color:var(--muted);line-height:1.7">
+            ① The six segments span 3&ndash;9 entities, a <b style="color:var(--ink)">3&times;</b> max-to-min ratio with no single segment above half;
+            ② the thin upstream is a <b style="color:var(--ink)">scope effect</b> (vertically integrated in-house, assets held by unlisted groups), not supply scarcity;
+            ③ module concentration is an <b style="color:var(--ink)">outcome of scale economics</b> &mdash; lowest per-GW capex, month-level certification &mdash; so it never enters the barrier list.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01 value -->
+<section class="sec alt" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">01 · PURPOSE &amp; VALUE</div>
+        <h2 class="sec-title">Research question and value</h2>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="reveal">
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.85">
+          The PV industry has long leaned on an intuition: <b style="color:var(--ink)">few upstream players plus heavy capex means supply is stuck</b>.
+          It sounds right, but no one has tested it against a falsifiable standard. This report does exactly that &mdash; it turns &ldquo;intuition&rdquo; into a &ldquo;verifiable conclusion&rdquo; with a three-layer judgment framework.
+        </p>
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.85;margin-top:18px">
+          The result is a <b style="color:var(--teal)">negative finding</b>: none of the six segments reaches the structural-constraint threshold. That is itself a valuable conclusion &mdash; it tells you the <b style="color:var(--ink)">PV game is not &ldquo;who blocks supply,&rdquo; but &ldquo;who survives the capacity cycle, technology roadmap, and channels.&rdquo;</b>
+        </p>
+      </div>
+      <div class="reveal d1">
+        <div class="chart-card">
+          <div class="cap">Scope discipline &middot; held throughout</div>
+          <div class="ttl">What this report measures, and what it does not</div>
+          <div class="limits" style="border:none;background:transparent">
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">Does</div>
+              <p><b>The distribution of listed entities</b> &mdash; a quantifiable, reproducible structural fact.</p>
+            </div>
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">Does not</div>
+              <p><b>A &ldquo;localization rate&rdquo;</b> &mdash; the report claims no localization rate and does not equate &ldquo;few entities&rdquo; with &ldquo;insufficient supply.&rdquo;</p>
+            </div>
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">Boundary</div>
+              <p>Conclusions hold only for <b>listed entities</b>; unlisted majors and foundries are outside the sample.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 landscape -->
+<section class="sec" id="landscape">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">02 · THE LANDSCAPE</div>
+        <h2 class="sec-title">The landscape: six segments, relatively balanced</h2>
+      </div>
+      <div class="right">33 entities &middot; six segments</div>
+    </div>
+
+    <div class="cols">
+      <div class="chart-card reveal">
+        <div class="cap">Value-chain entity structure</div>
+        <div class="ttl">The largest segment (inverters, 9) is only 3&times; the smallest (cells, 3)</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">Inverters</div><div class="bar-track"><div class="bar-fill teal" style="width:100%"></div></div><div class="bar-val">9 <small>27.3%</small></div></div>
+          <div class="bar-row"><div class="bar-label">Modules</div><div class="bar-track"><div class="bar-fill ice" style="width:89%"></div></div><div class="bar-val">8 <small>24.2%</small></div></div>
+          <div class="bar-row"><div class="bar-label">Power plants</div><div class="bar-track"><div class="bar-fill violet" style="width:56%"></div></div><div class="bar-val">5 <small>15.2%</small></div></div>
+          <div class="bar-row"><div class="bar-label">Polysilicon</div><div class="bar-track"><div class="bar-fill amber" style="width:44%"></div></div><div class="bar-val">4 <small>12.1%</small></div></div>
+          <div class="bar-row"><div class="bar-label">Wafers</div><div class="bar-track"><div class="bar-fill coral" style="width:44%"></div></div><div class="bar-val">4 <small>12.1%</small></div></div>
+          <div class="bar-row"><div class="bar-label">Cells</div><div class="bar-track"><div class="bar-fill muted" style="width:33%"></div></div><div class="bar-val">3 <small>9.1%</small></div></div>
+        </div>
+      </div>
+
+      <div class="chart-card reveal d1">
+        <div class="cap">Segment &times; listing board</div>
+        <div class="ttl">Board structure reflects each segment&rsquo;s capital-market character</div>
+        <table class="tbl">
+          <tr><th>Segment</th><th class="num">Main</th><th class="num">STAR</th><th class="num">ChiNext</th><th class="num">HK</th></tr>
+          <tr><td>Polysilicon</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">2</td></tr>
+          <tr class="hl"><td>Wafers</td><td class="num"><b>4</b></td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>Cells</td><td class="num">2</td><td class="num">0</td><td class="num">1</td><td class="num">0</td></tr>
+          <tr><td>Modules</td><td class="num">4</td><td class="num">3</td><td class="num">1</td><td class="num">0</td></tr>
+          <tr class="hl"><td>Inverters</td><td class="num">1</td><td class="num"><b>4</b></td><td class="num"><b>4</b></td><td class="num">0</td></tr>
+          <tr><td>Power plants</td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">1</td></tr>
+        </table>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">Wafers sit entirely on the main board (mature, asset-heavy), inverters lean to STAR/ChiNext (growth, R&amp;D-heavy), and 2 of 4 polysilicon firms are HK-listed &mdash; a capital-market character difference, not a competitiveness signal.</p>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">Structural observation</div>
+      <p>The PV value chain is relatively balanced &mdash; the largest segment (inverters, 9) and the smallest (cells, 3) differ by only <em>3&times;</em>, with no single segment above half.</p>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:8px">
+      <div class="cap">Industry backdrop &middot; global &amp; China PV additions &middot; IEA PVPS / NEA</div>
+      <div class="ttl">The industry is high-growth; supply judgments belong in the context of overcapacity and de-stocking</div>
+      <svg viewBox="0 0 460 220" width="100%" style="margin-top:8px">
+        <defs>
+          <linearGradient id="pva" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0b9672" stop-opacity=".32"/>
+            <stop offset="1" stop-color="#0b9672" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="180" x2="460" y2="180" stroke="#dde3da" stroke-width="1"/>
+        <line x1="0" y1="120" x2="460" y2="120" stroke="#e7ece3" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="0" y1="60" x2="460" y2="60" stroke="#e7ece3" stroke-width="1" stroke-dasharray="3 4"/>
+        <polygon points="20,150 235,100 440,26 440,180 20,180" fill="url(#pva)"/>
+        <polyline points="20,150 235,100 440,26" fill="none" stroke="#0b9672" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="150" r="5" fill="#ffffff" stroke="#0b9672" stroke-width="2.5"/>
+        <circle cx="235" cy="100" r="5" fill="#ffffff" stroke="#0b9672" stroke-width="2.5"/>
+        <circle cx="440" cy="26" r="6" fill="#0b9672"/>
+        <text x="20" y="168" fill="#99a299" font-size="10.5" font-family="SF Mono,Menlo,monospace">2023 · 446</text>
+        <text x="208" y="94" fill="#3c433d" font-size="10.5" font-family="SF Mono,Menlo,monospace">2024 · 602</text>
+        <text x="360" y="16" fill="#0b9672" font-size="12" font-family="SF Mono,Menlo,monospace" font-weight="600">2025 · 698</text>
+        <text x="0" y="210" fill="#99a299" font-size="10" font-family="SF Mono,Menlo,monospace">GW &middot; global PV additions (+15.9% YoY in 2025)</text>
+      </svg>
+      <div style="display:flex;gap:24px;margin-top:14px;flex-wrap:wrap">
+        <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">316.6<span style="font-size:12px;color:var(--muted)"> GW</span></div><div style="font-size:11px;color:var(--muted)">China additions &middot; 2025</div></div>
+        <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">1,272<span style="font-size:12px;color:var(--muted)"> GW</span></div><div style="font-size:11px;color:var(--muted)">China cumulative grid-connected &middot; 2026-06</div></div>
+        <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">588<span style="font-size:12px;color:var(--muted)"> GW</span></div><div style="font-size:11px;color:var(--muted)">China module output &middot; 2024</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 framework -->
+<section class="sec alt" id="framework">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">03 · THE FRAMEWORK</div>
+        <h2 class="sec-title">The method: a signal is not a conclusion</h2>
+      </div>
+      <div class="right">Three layers &middot; a negative finding is allowed</div>
+    </div>
+
+    <p class="reveal" style="max-width:820px;color:var(--ink-2);font-size:16px;line-height:1.85;margin-bottom:36px">
+      This report does not equate &ldquo;few players, heavy capex, high concentration&rdquo; with &ldquo;supply locked down.&rdquo; It tightens step by step through a <b style="color:var(--ink)">three-layer judgment</b>,
+      and explicitly allows a <b style="color:var(--teal)">negative finding</b> &mdash; &ldquo;no structural constraint identified&rdquo; is itself a valid conclusion.
+    </p>
+
+    <div class="layers reveal">
+      <div class="layer">
+        <div class="step">Layer 1 &middot; Fact</div>
+        <h3>Structural signal</h3>
+        <p>Few players, heavy assets, high concentration &mdash; observable &ldquo;signals.&rdquo; Prices are under pressure and losses are absorbed, but no substantive shakeout has been triggered.</p>
+      </div>
+      <div class="layer">
+        <div class="step">Layer 2 &middot; Structure</div>
+        <h3>Structural supply constraint</h3>
+        <p>Supply is materially locked &mdash; new capacity cannot enter and old capacity cannot exit &mdash; backed by independently verifiable barrier evidence such as cost-curve position or per-watt cost.</p>
+      </div>
+      <div class="layer">
+        <div class="step">Layer 3 &middot; Strategy</div>
+        <h3>Actual substitution constraint</h3>
+        <p>Even alternative technology routes and substitute products pose no real threat. This layer requires import-dependence, local-share, or technology-gap evidence.</p>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">The key methodological move</div>
+      <p>The report&rsquo;s result is <em>&ldquo;zero constraints&rdquo;</em> &mdash; all six segments stay at layer one. That negative finding is worth more than any &ldquo;found a chokepoint&rdquo; claim, because it corrects a widespread industry misjudgment.</p>
+    </div>
+
+    <div class="status-map reveal">
+      <div class="status">
+        <div class="t" style="color:var(--amber)">Not a barrier</div>
+        <p>Has the structural features of &ldquo;few players, heavy assets, high concentration,&rdquo; but they fall short of an entry barrier. Polysilicon, wafers, and cells land here.</p>
+      </div>
+      <div class="status">
+        <div class="t" style="color:var(--coral)">Low entry barrier</div>
+        <p>High concentration is an outcome of scale economics; the lowest per-GW capex and month-level certification keep the entry barrier low. Modules land here.</p>
+      </div>
+      <div class="status">
+        <div class="t" style="color:var(--muted)">Ample supply</div>
+        <p>No supply scarcity &mdash; either entities are dense, or assets sit inside unlisted groups. Inverters and power plants land here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04 deep dive -->
+<section class="sec" id="deepdive">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">04 · SEGMENT-BY-SEGMENT</div>
+        <h2 class="sec-title">Segment by segment: six segments, zero constraints</h2>
+      </div>
+      <div class="right">Evidence tiered &middot; honestly labeled</div>
+    </div>
+    <p class="reveal" style="max-width:820px;color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:36px">
+      Six segments, checked one by one: <b style="color:var(--ink)">none</b> reaches the structural-constraint threshold. Three upstream segments are &ldquo;not a barrier,&rdquo; modules have a &ldquo;low entry barrier,&rdquo; and inverters &amp; power plants have &ldquo;ample supply.&rdquo;
+    </p>
+
+    <div class="seg-grid reveal">
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">Polysilicon</span><span class="seg-tag tag-amber">Not a barrier</span></div>
+        <div class="metric"><span class="k">Listed entities</span><span class="val">4 <small>firms · 12.1%</small></span></div>
+        <div class="metric"><span class="k">Capital intensity</span><span class="val">7.8% <small>R&amp;D 2.1%</small></span></div>
+        <div class="metric"><span class="k">Per-tonne investment</span><span class="val">85&ndash;105k <small>RMB/tonne</small></span></div>
+        <div class="metric"><span class="k">Expansion cycle / local</span><span class="val">15&ndash;24 mo <small>· 95.3%</small></span></div>
+        <div class="judge"><b>Verdict</b>: heavy assets + a long expansion cycle are real features, but &ldquo;asset-heavy&rdquo; does not itself equal an entry barrier; capital intensity is a flow measure depressed by the 2026 de-stocking cycle, so it cannot prove a stock barrier.</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">Wafers</span><span class="seg-tag tag-amber">Not a barrier</span></div>
+        <div class="metric"><span class="k">Listed entities</span><span class="val">4 <small>firms · 12.1%</small></span></div>
+        <div class="metric"><span class="k">Capital intensity</span><span class="val">18.3% <small>2nd highest</small></span></div>
+        <div class="metric"><span class="k">Per-GW investment</span><span class="val">2.2&ndash;3.5 <small>RMB bn/GW</small></span></div>
+        <div class="metric"><span class="k">Mono / N-type</span><span class="val">&ge;98% <small>· ~97%</small></span></div>
+        <div class="judge"><b>Verdict</b>: genuinely capital- and process-intensive, but &ldquo;concentration&rdquo; is a structural feature, not a barrier &mdash; no evidence shows large-wafer external supply is locked by a few firms.</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">Cells</span><span class="seg-tag tag-amber">Not a barrier</span></div>
+        <div class="metric"><span class="k">Listed entities</span><span class="val">3 <small>firms · 9.1% (fewest)</small></span></div>
+        <div class="metric"><span class="k">Capital intensity</span><span class="val">5.2% <small>R&amp;D 1.7%</small></span></div>
+        <div class="metric"><span class="k">TOPCon equipment</span><span class="val">1.5&ndash;2.1 <small>RMB bn/GW</small></span></div>
+        <div class="metric"><span class="k">Technology mix</span><span class="val">TOPCon 87.6% <small>HJT 2.6%</small></span></div>
+        <div class="judge"><b>Verdict</b>: the fewest entities stem from vertically-integrated leaders producing cells in-house, not real scarcity; the sunk cost of a technology shift is a competitive dimension, not supply lock-in.</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">Modules</span><span class="seg-tag tag-coral">Low entry barrier</span></div>
+        <div class="metric"><span class="k">Listed entities</span><span class="val">8 <small>firms · 24.2%</small></span></div>
+        <div class="metric"><span class="k">Capital intensity</span><span class="val">8.5% <small>R&amp;D 2.9%</small></span></div>
+        <div class="metric"><span class="k">Per-GW investment</span><span class="val">0.8&ndash;1.4 <small>RMB bn/GW (lowest)</small></span></div>
+        <div class="metric"><span class="k">Shipment CR5</span><span class="val">73.9% <small>· cert 3&ndash;6 mo</small></span></div>
+        <div class="judge"><b>Verdict</b>: top-tier concentration is the result of scale economics and industry consolidation; the lowest per-GW capex plus month-level certification means the entry barrier is low and concentration cannot act as a barrier.</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">Inverters</span><span class="seg-tag tag-none">Ample supply</span></div>
+        <div class="metric"><span class="k">Listed entities</span><span class="val">9 <small>firms · 27.3% (most)</small></span></div>
+        <div class="metric"><span class="k">Capital intensity</span><span class="val">4.2% <small>lowest</small></span></div>
+        <div class="metric"><span class="k">R&amp;D intensity</span><span class="val">6.7% <small>highest</small></span></div>
+        <div class="metric"><span class="k">Local share / CR5</span><span class="val">52.5% <small>· 63.9%</small></span></div>
+        <div class="judge"><b>Verdict</b>: dense entities + lowest capex + highest R&amp;D mean supply is neither scarce nor locked; Sungrow at 25.2% and Huawei at 24.8% put competition in certification, channels, and overseas.</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">Power plants</span><span class="seg-tag tag-none">Ample supply</span></div>
+        <div class="metric"><span class="k">Listed entities</span><span class="val">5 <small>firms · 15.2%</small></span></div>
+        <div class="metric"><span class="k">Capital intensity</span><span class="val">23.4% <small>n=2, bimodal</small></span></div>
+        <div class="metric"><span class="k">Ownership</span><span class="val">SOE ~94% <small>central ~53%</small></span></div>
+        <div class="metric"><span class="k">China grid-connected</span><span class="val">1,272 <small>GW</small></span></div>
+        <div class="judge"><b>Verdict</b>: the few entities reflect plant assets held by energy groups / unlisted entities &mdash; a scope effect, not supply scarcity; the market itself is not small.</div>
+      </div>
+    </div>
+
+    <div class="cols" style="margin-top:48px">
+      <div class="chart-card reveal">
+        <div class="cap">Key insight &middot; capital vs R&amp;D intensity</div>
+        <div class="ttl">PV&rsquo;s barrier is neither capital spending nor R&amp;D spending</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">Power plants · capex</div><div class="bar-track"><div class="bar-fill muted" style="width:100%"></div></div><div class="bar-val">23.4%</div></div>
+          <div class="bar-row"><div class="bar-label">Wafers · capex</div><div class="bar-track"><div class="bar-fill coral" style="width:78%"></div></div><div class="bar-val">18.3%</div></div>
+          <div class="bar-row"><div class="bar-label">Modules · capex</div><div class="bar-track"><div class="bar-fill ice" style="width:36%"></div></div><div class="bar-val">8.5%</div></div>
+          <div class="bar-row"><div class="bar-label">Polysilicon · capex</div><div class="bar-track"><div class="bar-fill amber" style="width:33%"></div></div><div class="bar-val">7.8%</div></div>
+          <div class="bar-row"><div class="bar-label">Cells · capex</div><div class="bar-track"><div class="bar-fill amber" style="width:22%"></div></div><div class="bar-val">5.2%</div></div>
+          <div class="bar-row"><div class="bar-label">Inverters · capex</div><div class="bar-track"><div class="bar-fill teal" style="width:18%"></div></div><div class="bar-val">4.2%</div></div>
+          <div class="bar-row"><div class="bar-label">Inverters · R&amp;D</div><div class="bar-track"><div class="bar-fill teal" style="width:29%"></div></div><div class="bar-val">6.7%</div></div>
+        </div>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">Inverters are the classic &ldquo;low-capex, high-R&amp;D&rdquo; manufacturing segment: the lowest capital intensity (4.2%) with the highest R&amp;D (6.7%). PV&rsquo;s real competitive axes are the capacity cycle, technology roadmap, and certification channels &mdash; not capital or R&amp;D barriers alone.</p>
+      </div>
+      <div class="chart-card reveal d1">
+        <div class="cap">Industry anchors &middot; key figures</div>
+        <div class="ttl">Upstream is highly localized, but concentration is an outcome, not a constraint</div>
+        <table class="tbl">
+          <tr><th>Metric</th><th class="num">Value</th><th class="num">Scope</th></tr>
+          <tr><td>Polysilicon localization</td><td class="num"><b>95.3%</b></td><td class="num">capacity · CPIA</td></tr>
+          <tr><td>Wafer localization</td><td class="num"><b>96.9%</b></td><td class="num">output · CPIA</td></tr>
+          <tr><td>Polysilicon capacity CR10</td><td class="num">79.8%</td><td class="num">global · CPIA</td></tr>
+          <tr><td>Module shipment CR5</td><td class="num">73.9%</td><td class="num">2024 · computed</td></tr>
+          <tr class="hl"><td>Inverter shipment CR5</td><td class="num"><b>63.9%</b></td><td class="num">2025 · S&amp;P Global</td></tr>
+        </table>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">Upstream localization already exceeds 95%, so a &ldquo;chokepoint&rdquo; is moot; module and inverter concentration are high but are the result of scale economics and consolidation, not irreplaceable barriers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05 decisions -->
+<section class="sec alt" id="decisions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">05 · WHAT IT MEANS</div>
+        <h2 class="sec-title">Six segments, six implications</h2>
+      </div>
+      <div class="right">From &ldquo;find the chokepoint&rdquo; to &ldquo;read the competition&rdquo;</div>
+    </div>
+    <div class="decision-list reveal">
+      <div class="decision-item">
+        <div class="idx">01</div>
+        <div><h4>Few upstream players does not mean constrained supply</h4><p>Polysilicon, wafers, and cells total just 11 entities (33.3%), but supply tightness is set by capex intensity, expansion cycles, and the capacity cycle &mdash; entity count is only a reference.</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">02</div>
+        <div><h4>Read polysilicon by cost curve and capacity cycle</h4><p>At 85&ndash;105k RMB/tonne and a 15&ndash;24-month expansion cycle, it is strongly cyclical with high sunk costs &mdash; whoever sits low on the cost curve survives, and the longer capacity idles, the harder it is to restart.</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">03</div>
+        <div><h4>For cells, watch the cost of a technology-route migration</h4><p>TOPCon holds 83%, and HJT/XBC equipment costs far more. The equipment-investment gap decides how much old capacity is written off on a switch, and who seizes the next technology window.</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">04</div>
+        <div><h4>Module concentration is an outcome, not a barrier</h4><p>The lowest per-GW capex (0.8&ndash;1.4 bn) and 3&ndash;6-month certification make entry easy; what separates winners is manufacturing cost, expansion capability, and vertical-integration efficiency.</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">05</div>
+        <div><h4>Inverter competition is in certification, channels, and overseas</h4><p>Chinese makers already hold a large global share (Sungrow 25.2%, Huawei 24.8%); the next fight is overseas grid certification, channels, and brand &mdash; not domestic capacity.</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">06</div>
+        <div><h4>Read power plants by held capacity, not entity count</h4><p>China&rsquo;s cumulative grid-connected capacity is 1,272 GW, but most assets sit with power groups and unlisted entities &mdash; &ldquo;listed count&rdquo; is the wrong ruler; one must first unify the numerator across self-owned, rolling-development, and O&amp;M capacity.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06 boundaries -->
+<section class="sec" id="boundary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">06 · BOUNDARIES</div>
+        <h2 class="sec-title">Boundaries and limitations, stated honestly</h2>
+      </div>
+      <div class="right">Scope boundaries &middot; not dodged</div>
+    </div>
+    <div class="method-grid reveal">
+      <div class="method">
+        <div class="ic">Evidence level</div>
+        <h4>Identities verified; some figures are summary-grade</h4>
+        <p>Entity identities were verified one by one; for some entities only summary-level disclosure is public, so capacity, shipment, and revenue figures are not word-level verified, and value-chain classification rests on disclosed facts.</p>
+      </div>
+      <div class="method">
+        <div class="ic">Sample coverage</div>
+        <h4>33 entities are a full reconciliation of listed firms</h4>
+        <p>PV auxiliaries/equipment, pure distributors, mixed wind-solar operators, and non-PV firms were excluded by explicit rules; unlisted majors and foundries are out of scope, so conclusions cannot be generalized.</p>
+      </div>
+      <div class="method">
+        <div class="ic">Statistical nature</div>
+        <h4>A cross-sectional snapshot, no time series</h4>
+        <p>The entity distribution reflects a cut-off date (2026-10-01); it shows the current state and makes no trend judgment.</p>
+      </div>
+      <div class="method">
+        <div class="ic">Classification granularity</div>
+        <h4>Integrated leaders&rsquo; primary attribution is a manual call</h4>
+        <p>Tongwei is classified under polysilicon and LONGi under modules, subject to revenue-mix review; inverters with storage are classified as inverters, with storage revenue unsplit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07 method -->
+<section class="sec alt" id="method">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">07 · METHODOLOGY</div>
+        <h2 class="sec-title">Method and data sources</h2>
+      </div>
+      <div class="right">Reproducible &middot; verifiable</div>
+    </div>
+    <div class="method-grid reveal">
+      <div class="method">
+        <div class="ic">Sample</div>
+        <h4>33 A+H-share listed entities</h4>
+        <p>Publicly identifiable entities whose main business belongs to the six PV segments, classified by value-chain position, covering polysilicon through power plants.</p>
+      </div>
+      <div class="method">
+        <div class="ic">Barrier evidence</div>
+        <h4>Capital intensity + R&amp;D intensity, dual proxies</h4>
+        <p>Capital formation is measured as fixed-asset cash over revenue, and R&amp;D as R&amp;D expense over revenue, splitting &ldquo;high barrier&rdquo; into two measurable axes.</p>
+      </div>
+      <div class="method">
+        <div class="ic">Industry anchors</div>
+        <h4>Installations, capacity, and concentration</h4>
+        <p>Industry totals are set against the sample to judge whether &ldquo;few entities&rdquo; is real scarcity or a scope effect; local shares are public-report estimates.</p>
+      </div>
+      <div class="method">
+        <div class="ic">Data sources</div>
+        <h4>Authoritative figures + primary filings</h4>
+        <p>Industry totals come from IEA PVPS, China&rsquo;s NEA, CPIA, InfoLink, TrendForce, and MIIT; entity dimensions come from company periodic reports.</p>
+      </div>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:36px">
+      <div class="cap">Scope discipline &middot; three &ldquo;does not equal&rdquo;</div>
+      <div class="ttl">These three run through the report and underpin its credibility</div>
+      <div class="limits">
+        <div class="limit"><div class="idx">01</div><p><b>Few entities &ne; insufficient supply.</b> The thin upstream stems from vertical integration and asset-holding structure, not a real capacity shortage.</p></div>
+        <div class="limit"><div class="idx">02</div><p><b>High concentration &ne; an irreplaceable barrier.</b> Module and inverter concentration is a scale-economics outcome, not &ldquo;newcomers can&rsquo;t enter.&rdquo;</p></div>
+        <div class="limit"><div class="idx">03</div><p><b>Listed-entity count &ne; localization rate.</b> This report measures the distribution of listed entities and claims no localization rate.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-line">
+      <div class="b"><span class="dot"></span>PV Supply Chain Structure &middot; Industry Judgment Report</div>
+      <div class="stamp">PV &middot; 2026 &middot; Frozen conclusions</div>
+    </div>
+    <p class="fine">
+      This report is compiled from public information and listed-company periodic reports for industry-structure research and decision support, and does not constitute investment advice.
+      It measures the structural fact of &ldquo;listed-entity distribution,&rdquo; claims no &ldquo;localization rate,&rdquo; and treats both &ldquo;supply-thin&rdquo; and &ldquo;structural supply constraint&rdquo; as independent judgments from three layers of evidence, not external narrative labels.
+      Sources: IEA PVPS, China&rsquo;s NEA, CPIA, InfoLink, TrendForce, MIIT, and company 2025 annual / 2026 interim reports.
+    </p>
+  </div>
+</footer>
+
+<script>
+  const progress = document.getElementById('progress');
+  function onScroll(){
+    const h = document.documentElement;
+    const sc = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (sc * 100) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

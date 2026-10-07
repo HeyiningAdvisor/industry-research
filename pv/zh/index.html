@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>光伏产业链供给格局 · 行业判断报告</title>
+<style>
+  :root{
+    --bg:#f7f7f3;
+    --bg-2:#eef1eb;
+    --surface:#ffffff;
+    --surface-2:#f1f4ee;
+    --line:#dde3da;
+    --line-soft:#e7ece3;
+    --ink:#1b211c;
+    --ink-2:#3c433d;
+    --muted:#68716a;
+    --muted-2:#99a299;
+    --teal:#0b9672;
+    --teal-soft:rgba(11,150,114,.10);
+    --amber:#b8771f;
+    --amber-soft:rgba(184,119,31,.10);
+    --coral:#c5492f;
+    --coral-soft:rgba(197,73,47,.10);
+    --ice:#3f6fb5;
+    --ice-soft:rgba(63,111,181,.10);
+    --violet:#7a5fb8;
+    --violet-soft:rgba(122,95,184,.10);
+    --font-display:"Songti SC","STSong","New York","Georgia","Times New Roman",serif;
+    --font-body:"PingFang SC","SF Pro Text",-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",sans-serif;
+    --font-mono:"SF Mono","Menlo",ui-monospace,"SFMono-Regular","Monaco",monospace;
+    --maxw:1180px;
+    --gutter:clamp(20px,4vw,48px);
+    --radius:8px;
+    --shadow:0 24px 60px -34px rgba(36,46,38,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;line-height:1.75;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;letter-spacing:0;overflow-x:hidden;
+  }
+  ::selection{background:var(--teal);color:#fff}
+  a{color:inherit;text-decoration:none}
+  .progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--teal),var(--amber));z-index:100;transition:width .12s linear}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);height:60px;background:rgba(247,247,243,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+  .nav .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;letter-spacing:.5px}
+  .nav .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--teal-soft)}
+  .nav .brand span{color:var(--ink-2);font-size:14px}
+  .nav .links{display:flex;gap:22px}
+  .nav .links a{font-size:13px;color:var(--muted);transition:color .2s}
+  .nav .links a:hover{color:var(--ink)}
+  @media(max-width:820px){.nav .links{display:none}}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 72px;position:relative}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 520px at 78% -8%,rgba(11,150,114,.12),transparent 60%),radial-gradient(700px 500px at 8% 108%,rgba(184,119,31,.08),transparent 60%)}
+  .hero .grid-bg{position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 70%)}
+  .hero .inner{position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid var(--line);border-radius:999px;padding:7px 15px;background:rgba(11,150,114,.06)}
+  .eyebrow .sep{width:14px;height:1px;background:var(--teal)}
+  .hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(40px,7vw,88px);line-height:1.08;margin:34px 0 26px;letter-spacing:-.5px}
+  .hero h1 .accent{color:var(--amber)}
+  .hero h1 .teal{color:var(--teal)}
+  .standfirst{max-width:680px;font-size:clamp(16px,1.6vw,19px);color:var(--ink-2);line-height:1.8}
+  .standfirst b{color:var(--ink);font-weight:600}
+  .standfirst em{font-style:normal;color:var(--teal)}
+  .hero .meta{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+  .hero .meta span{display:inline-flex;align-items:center;gap:8px}
+  .hero .meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--muted-2)}
+  .scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scroll-cue .line{width:1px;height:36px;background:linear-gradient(var(--teal),transparent);animation:drop 1.8s ease-in-out infinite}
+  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(0);transform-origin:bottom}}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:56px}
+  .stat{background:var(--surface);padding:28px 26px;transition:background .25s}
+  .stat:hover{background:var(--surface-2)}
+  .stat .num{font-family:var(--font-mono);font-size:clamp(28px,3.4vw,44px);font-weight:600;line-height:1;letter-spacing:-1px}
+  .stat .num small{font-size:.5em;color:var(--muted);font-weight:400;letter-spacing:0}
+  .stat .label{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.5}
+  .stat .label b{color:var(--ink-2);font-weight:600}
+  .stat .tone-teal{color:var(--teal)}
+  .stat .tone-amber{color:var(--amber)}
+  .stat .tone-coral{color:var(--coral)}
+  @media(max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+  .sec{padding:110px 0}
+  .sec.alt{background:var(--bg-2)}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+  .sec-no{font-family:var(--font-mono);font-size:13px;color:var(--amber);letter-spacing:3px}
+  .sec-title{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.4vw,48px);line-height:1.15;letter-spacing:-.5px;margin-top:8px}
+  .sec-sub{max-width:560px;color:var(--muted);font-size:15px;line-height:1.8}
+  .sec-head .right{text-align:right;font-family:var(--font-mono);font-size:11px;color:var(--muted-2);letter-spacing:1px}
+  @media(max-width:820px){.sec-head .right{display:none}}
+  .insight{border-left:3px solid var(--teal);background:linear-gradient(90deg,var(--teal-soft),transparent 70%);padding:22px 26px;border-radius:0 var(--radius) var(--radius) 0;margin:40px 0}
+  .insight .kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--teal);text-transform:uppercase}
+  .insight p{margin-top:8px;font-size:18px;line-height:1.7;color:var(--ink);font-weight:500}
+  .insight p em{font-style:normal;color:var(--amber);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:860px){.cols{grid-template-columns:1fr;gap:36px}}
+  .donut-wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+  .donut{width:230px;height:230px;border-radius:50%;position:relative;flex-shrink:0;background:conic-gradient(var(--teal) 0 27.3%,var(--ice) 27.3% 51.5%,var(--violet) 51.5% 66.7%,var(--amber) 66.7% 78.8%,var(--coral) 78.8% 90.9%,var(--muted-2) 90.9% 100%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+  .donut::after{content:"";position:absolute;inset:52px;border-radius:50%;background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+  .donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;text-align:center}
+  .donut .center .big{font-family:var(--font-mono);font-size:42px;font-weight:600;line-height:1;letter-spacing:-1px}
+  .donut .center .small{font-size:12px;color:var(--muted);margin-top:6px}
+  .legend{flex:1;min-width:220px;display:flex;flex-direction:column;gap:12px}
+  .legend .row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px}
+  .legend .row .l{display:flex;align-items:center;gap:10px;color:var(--ink-2)}
+  .legend .sw{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+  .legend .row .v{font-family:var(--font-mono);color:var(--ink);font-size:13px}
+  .legend .row .v small{color:var(--muted);font-weight:400}
+  .bars{display:flex;flex-direction:column;gap:14px}
+  .bar-row{display:grid;grid-template-columns:110px 1fr 92px;align-items:center;gap:14px}
+  @media(max-width:640px){.bar-row{grid-template-columns:82px 1fr 66px;gap:10px}}
+  .bar-label{font-size:13px;color:var(--ink-2);text-align:right;white-space:nowrap}
+  .bar-track{height:22px;background:var(--surface-2);border-radius:3px;position:relative;overflow:hidden}
+  .bar-fill{height:100%;border-radius:3px;position:relative}
+  .bar-fill.teal{background:linear-gradient(90deg,rgba(11,150,114,.35),var(--teal))}
+  .bar-fill.amber{background:linear-gradient(90deg,rgba(184,119,31,.35),var(--amber))}
+  .bar-fill.coral{background:linear-gradient(90deg,rgba(197,73,47,.35),var(--coral))}
+  .bar-fill.ice{background:linear-gradient(90deg,rgba(63,111,181,.3),var(--ice))}
+  .bar-fill.violet{background:linear-gradient(90deg,rgba(122,95,184,.3),var(--violet))}
+  .bar-fill.muted{background:linear-gradient(90deg,#c6cdc4,#909a90)}
+  .bar-val{font-family:var(--font-mono);font-size:13px;color:var(--ink);text-align:left}
+  .bar-val small{color:var(--muted)}
+  .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .chart-card .cap{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+  .chart-card .ttl{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:20px}
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl th{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.5px;color:var(--muted);text-transform:uppercase;text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  .tbl td{padding:11px 10px;border-bottom:1px solid var(--line-soft);color:var(--ink-2)}
+  .tbl td.num,.tbl th.num{text-align:right;font-family:var(--font-mono)}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl td b{color:var(--ink);font-weight:600}
+  .tbl .hl td{color:var(--ink)}
+  .seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:1020px){.seg-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.seg-grid{grid-template-columns:1fr}}
+  .seg-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:13px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+  .seg-card:hover{transform:translateY(-4px);border-color:#3a443e}
+  .seg-card .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .seg-name{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--ink)}
+  .seg-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.5px;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .tag-amber{background:var(--amber-soft);color:var(--amber)}
+  .tag-coral{background:var(--coral-soft);color:var(--coral)}
+  .tag-none{background:rgba(139,149,142,.14);color:var(--muted)}
+  .seg-card .metric{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);padding-top:11px}
+  .seg-card .metric .k{font-size:11px;color:var(--muted);letter-spacing:.5px}
+  .seg-card .metric .val{font-family:var(--font-mono);font-size:14.5px;color:var(--ink);font-weight:600}
+  .seg-card .metric .val small{font-size:11px;color:var(--muted);font-weight:400}
+  .seg-card .judge{font-size:13px;color:var(--ink-2);line-height:1.65;margin-top:auto}
+  .seg-card .judge b{color:var(--ink)}
+  .layers{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:820px){.layers{grid-template-columns:1fr}}
+  .layer{background:var(--surface);padding:28px}
+  .layer .step{font-family:var(--font-mono);font-size:11px;letter-spacing:2px;color:var(--amber)}
+  .layer h3{font-family:var(--font-display);font-weight:700;font-size:20px;margin:12px 0 10px}
+  .layer p{font-size:13px;color:var(--muted);line-height:1.7}
+  .status-map{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+  @media(max-width:700px){.status-map{grid-template-columns:1fr}}
+  .status{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+  .status .t{font-family:var(--font-mono);font-size:13px;font-weight:600;margin-bottom:6px}
+  .status p{font-size:12.5px;color:var(--muted);line-height:1.6}
+  .decision-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .decision-item{display:flex;gap:18px;padding:22px 26px;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+  .decision-item:last-child{border-bottom:none}
+  .decision-item .idx{font-family:var(--font-mono);font-size:12px;color:var(--amber);flex-shrink:0;padding-top:2px}
+  .decision-item h4{font-size:15px;font-weight:700;color:var(--ink)}
+  .decision-item p{font-size:13.5px;color:var(--ink-2);line-height:1.7;margin-top:4px}
+  .method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:700px){.method-grid{grid-template-columns:1fr}}
+  .method{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .method .ic{font-family:var(--font-mono);font-size:12px;color:var(--teal);letter-spacing:1px}
+  .method h4{font-size:15px;font-weight:700;margin:8px 0 6px}
+  .method p{font-size:13px;color:var(--muted);line-height:1.7}
+  .limits{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .limit{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line-soft);align-items:flex-start}
+  .limit:last-child{border-bottom:none}
+  .limit .idx{font-family:var(--font-mono);font-size:12px;color:var(--amber);flex-shrink:0;padding-top:2px}
+  .limit p{font-size:14px;color:var(--ink-2);line-height:1.7}
+  .limit p b{color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:60px 0 80px;background:var(--bg-2)}
+  footer .fine{font-size:12px;color:var(--muted);line-height:1.9;max-width:820px}
+  footer .brand-line{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+  footer .brand-line .b{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600}
+  footer .brand-line .b .dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  footer .brand-line .stamp{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;color:var(--muted)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}
+  .reveal.d2{transition-delay:.16s}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="brand"><span class="dot"></span><span>光伏产业链 · 供给格局判断</span></div>
+  <div class="links">
+    <a href="#summary">核心判断</a>
+    <a href="#landscape">全景</a>
+    <a href="#framework">判断框架</a>
+    <a href="#deepdive">逐环节</a>
+    <a href="#decisions">决策含义</a>
+    <a href="#method">方法论</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="grid-bg"></div>
+  <div class="wrap inner">
+    <span class="eyebrow">行业判断报告 · Photovoltaic <span class="sep"></span> 2026</span>
+    <h1>处处像壁垒，<br><span class="accent">没有一个真卡住</span></h1>
+    <p class="standfirst">
+      一份基于 <b>33 家 A 股与港股光伏上市公司</b>的价值链供给判断。它只回答一个问题：
+      光伏产业链上，哪个环节的供给真的被锁死了？答案比直觉更反常识——<em>没有</em>。
+    </p>
+    <div class="meta">
+      <span>样本：33 家上市主体</span>
+      <span>口径：6 大价值链环节</span>
+      <span>基准：2026 半年报 + 2025 年报</span>
+    </div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="num">33</div>
+        <div class="label"><b>纳入主体</b>，覆盖硅料 / 硅片 / 电池片 / 组件 / 逆变器 / 电站六大环节</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-teal">6<small> 个</small></div>
+        <div class="label"><b>价值链环节</b>，全部停留在「结构信号」层</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-coral">0<small> 个</small></div>
+        <div class="label"><b>构成结构性供给约束</b>——一份负向发现</div>
+      </div>
+      <div class="stat">
+        <div class="num tone-amber">3<small> 倍</small></div>
+        <div class="label"><b>最大/最小环节主体数之比</b>，分布相对均衡</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</header>
+
+<!-- SUMMARY -->
+<section class="sec" id="summary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">EXECUTIVE SUMMARY</div>
+        <h2 class="sec-title">先看结论：光伏没有「卡脖子」</h2>
+      </div>
+      <div class="right">结论先行 · 证据后置</div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">一句话判断</div>
+      <p>光伏六大环节，<em>没有任何一个</em>真正形成「供给被锁死」的约束。看到的玩家少、投资重、集中度高，都是「苗头」，不是「硬结论」。</p>
+    </div>
+
+    <div class="cols">
+      <div>
+        <div class="donut-wrap reveal">
+          <div class="donut">
+            <div class="center"><span class="big">33</span><span class="small">家上市主体</span></div>
+          </div>
+          <div class="legend">
+            <div class="row"><span class="l"><span class="sw" style="background:var(--teal)"></span>逆变器</span><span class="v">9 <small>27.3%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--ice)"></span>组件</span><span class="v">8 <small>24.2%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--violet)"></span>电站与系统</span><span class="v">5 <small>15.2%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--amber)"></span>硅料</span><span class="v">4 <small>12.1%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--coral)"></span>硅片</span><span class="v">4 <small>12.1%</small></span></div>
+            <div class="row"><span class="l"><span class="sw" style="background:var(--muted-2)"></span>电池片</span><span class="v">3 <small>9.1%</small></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="chart-card">
+          <div class="cap">三大核心发现</div>
+          <div class="ttl">拆开证据后，三个「像壁垒」的直觉都不成立</div>
+          <div class="bars">
+            <div class="bar-row">
+              <div class="bar-label">分布均衡</div>
+              <div class="bar-track"><div class="bar-fill teal" style="width:90%"></div></div>
+              <div class="bar-val">3× 以内</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">上游主体少</div>
+              <div class="bar-track"><div class="bar-fill amber" style="width:72%"></div></div>
+              <div class="bar-val">口径所致</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">集中度≠壁垒</div>
+              <div class="bar-track"><div class="bar-fill coral" style="width:62%"></div></div>
+              <div class="bar-val">结果非壁垒</div>
+            </div>
+          </div>
+          <p style="margin-top:18px;font-size:13px;color:var(--muted);line-height:1.7">
+            ① 六大环节主体数 3–9 家，最大/最小仅 <b style="color:var(--ink)">3 倍</b>，无单一环节占比过半；
+            ② 上游主体少是 <b style="color:var(--ink)">统计口径</b>（一体化内化、资产在未上市集团），不是供给稀缺；
+            ③ 组件集中度高是 <b style="color:var(--ink)">规模经济的结果</b>，单 GW 投资最低、认证仅月级，进不去壁垒清单。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01 value -->
+<section class="sec alt" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">01 · PURPOSE &amp; VALUE</div>
+        <h2 class="sec-title">研究问题与价值</h2>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="reveal">
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.85">
+          光伏行业长期流行一个直觉：<b style="color:var(--ink)">上游玩家少、投资重，所以供给被卡住</b>。
+          这个直觉听起来成立，但从来没人用一套可证伪的标准去检验它。这份报告做的，就是用三层判断框架把「直觉」变成「可核验的结论」。
+        </p>
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.85;margin-top:18px">
+          检验的结果是一个<b style="color:var(--teal)">负向发现</b>：六个环节没有一个达到结构性约束门槛。这本身就是一个有价值的结论——它告诉你，<b style="color:var(--ink)">光伏的竞争不是「谁卡住了供给」，而是「谁在产能周期、技术路线和渠道里活得下来」</b>。
+        </p>
+      </div>
+      <div class="reveal d1">
+        <div class="chart-card">
+          <div class="cap">口径纪律 · 全文一致</div>
+          <div class="ttl">本报告统计什么，不统计什么</div>
+          <div class="limits" style="border:none;background:transparent">
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">是</div>
+              <p><b>上市主体数量分布</b>——一个可量化、可复现的结构事实。</p>
+            </div>
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">否</div>
+              <p><b>国产化率</b>——本报告不声称任何国产化率，也不把「主体数量少」等同于「供给不足」。</p>
+            </div>
+            <div class="limit" style="padding:10px 0">
+              <div class="idx">边界</div>
+              <p>结论仅对<b>上市主体</b>成立，未上市大厂与代工厂不在样本内。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 landscape -->
+<section class="sec" id="landscape">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">02 · THE LANDSCAPE</div>
+        <h2 class="sec-title">全景：六大环节分布相对均衡</h2>
+      </div>
+      <div class="right">33 家 · 六环节</div>
+    </div>
+
+    <div class="cols">
+      <div class="chart-card reveal">
+        <div class="cap">价值链主体结构</div>
+        <div class="ttl">最大环节（逆变器 9 家）仅是最小环节（电池片 3 家）的 3 倍</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">逆变器</div><div class="bar-track"><div class="bar-fill teal" style="width:100%"></div></div><div class="bar-val">9 <small>27.3%</small></div></div>
+          <div class="bar-row"><div class="bar-label">组件</div><div class="bar-track"><div class="bar-fill ice" style="width:89%"></div></div><div class="bar-val">8 <small>24.2%</small></div></div>
+          <div class="bar-row"><div class="bar-label">电站与系统</div><div class="bar-track"><div class="bar-fill violet" style="width:56%"></div></div><div class="bar-val">5 <small>15.2%</small></div></div>
+          <div class="bar-row"><div class="bar-label">硅料</div><div class="bar-track"><div class="bar-fill amber" style="width:44%"></div></div><div class="bar-val">4 <small>12.1%</small></div></div>
+          <div class="bar-row"><div class="bar-label">硅片</div><div class="bar-track"><div class="bar-fill coral" style="width:44%"></div></div><div class="bar-val">4 <small>12.1%</small></div></div>
+          <div class="bar-row"><div class="bar-label">电池片</div><div class="bar-track"><div class="bar-fill muted" style="width:33%"></div></div><div class="bar-val">3 <small>9.1%</small></div></div>
+        </div>
+      </div>
+
+      <div class="chart-card reveal d1">
+        <div class="cap">环节 × 上市板块</div>
+        <div class="ttl">板块结构反映各环节的资本市场属性差异</div>
+        <table class="tbl">
+          <tr><th>环节</th><th class="num">主板</th><th class="num">科创板</th><th class="num">创业板</th><th class="num">港股</th></tr>
+          <tr><td>硅料</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">2</td></tr>
+          <tr class="hl"><td>硅片</td><td class="num"><b>4</b></td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+          <tr><td>电池片</td><td class="num">2</td><td class="num">0</td><td class="num">1</td><td class="num">0</td></tr>
+          <tr><td>组件</td><td class="num">4</td><td class="num">3</td><td class="num">1</td><td class="num">0</td></tr>
+          <tr class="hl"><td>逆变器</td><td class="num">1</td><td class="num"><b>4</b></td><td class="num"><b>4</b></td><td class="num">0</td></tr>
+          <tr><td>电站与系统</td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">1</td></tr>
+        </table>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">硅片全在主板（成熟重资产）、逆变器偏科创/创业板（成长型高研发）、硅料 2/4 在港股——这是资本市场属性差异，不据此推断竞争力。</p>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">结构性观察</div>
+      <p>光伏价值链主体分布相对均衡——最大环节（逆变器 9 家）与最小环节（电池片 3 家）仅差 <em>3 倍</em>，无单一环节占比过半。</p>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:8px">
+      <div class="cap">行业背景 · 全球与中国光伏新增装机 · IEA PVPS / 国家能源局</div>
+      <div class="ttl">行业本身在高速增长，供给判断要放在产能过剩与去产能的背景下</div>
+      <svg viewBox="0 0 460 220" width="100%" style="margin-top:8px">
+        <defs>
+          <linearGradient id="pva" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0b9672" stop-opacity=".32"/>
+            <stop offset="1" stop-color="#0b9672" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="180" x2="460" y2="180" stroke="#dde3da" stroke-width="1"/>
+        <line x1="0" y1="120" x2="460" y2="120" stroke="#e7ece3" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="0" y1="60" x2="460" y2="60" stroke="#e7ece3" stroke-width="1" stroke-dasharray="3 4"/>
+        <polygon points="20,150 235,100 440,26 440,180 20,180" fill="url(#pva)"/>
+        <polyline points="20,150 235,100 440,26" fill="none" stroke="#0b9672" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="20" cy="150" r="5" fill="#ffffff" stroke="#0b9672" stroke-width="2.5"/>
+        <circle cx="235" cy="100" r="5" fill="#ffffff" stroke="#0b9672" stroke-width="2.5"/>
+        <circle cx="440" cy="26" r="6" fill="#0b9672"/>
+        <text x="20" y="168" fill="#99a299" font-size="10.5" font-family="SF Mono,Menlo,monospace">2023 · 446</text>
+        <text x="208" y="94" fill="#3c433d" font-size="10.5" font-family="SF Mono,Menlo,monospace">2024 · 602</text>
+        <text x="360" y="16" fill="#0b9672" font-size="12" font-family="SF Mono,Menlo,monospace" font-weight="600">2025 · 698</text>
+        <text x="0" y="210" fill="#99a299" font-size="10" font-family="SF Mono,Menlo,monospace">单位：GW · 全球光伏新增装机（2025 同比 +15.9%）</text>
+      </svg>
+      <div style="display:flex;gap:24px;margin-top:14px;flex-wrap:wrap">
+        <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">316.6<span style="font-size:12px;color:var(--muted)"> GW</span></div><div style="font-size:11px;color:var(--muted)">中国新增装机 · 2025</div></div>
+        <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">1,272<span style="font-size:12px;color:var(--muted)"> GW</span></div><div style="font-size:11px;color:var(--muted)">全国累计并网 · 2026-06</div></div>
+        <div><div style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--ink)">588<span style="font-size:12px;color:var(--muted)"> GW</span></div><div style="font-size:11px;color:var(--muted)">中国组件产量 · 2024</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 framework -->
+<section class="sec alt" id="framework">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">03 · THE FRAMEWORK</div>
+        <h2 class="sec-title">判断方法：苗头，不等于硬结论</h2>
+      </div>
+      <div class="right">三层判断 · 允许负向发现</div>
+    </div>
+
+    <p class="reveal" style="max-width:820px;color:var(--ink-2);font-size:16px;line-height:1.85;margin-bottom:36px">
+      本报告不把「玩家少、投资重、集中度高」直接等同于「供给被锁死」。它用一套<b style="color:var(--ink)">三层判断法</b>逐级收紧，
+      并明确允许返回一个<b style="color:var(--teal)">负向发现</b>——「未识别到结构性约束」本身就是一个有效结论。
+    </p>
+
+    <div class="layers reveal">
+      <div class="layer">
+        <div class="step">第一层 · 事实</div>
+        <h3>结构信号</h3>
+        <p>少数玩家、重资产、集中度高——可观察的「苗头」。价格踩踏、亏损但还在撑着，尚未触发实质出清。</p>
+      </div>
+      <div class="layer">
+        <div class="step">第二层 · 结构</div>
+        <h3>结构性供给约束</h3>
+        <p>供给被实质性锁死——新产能进不来、老产能退不出去，且需要成本曲线、单瓦成本等可独立核验的壁垒证据。</p>
+      </div>
+      <div class="layer">
+        <div class="step">第三层 · 战略</div>
+        <h3>实际替代约束</h3>
+        <p>连替代技术路线、替代产品都构不成实质威胁。这一层需要进口依赖、国产份额或技术差距证据。</p>
+      </div>
+    </div>
+
+    <div class="insight reveal">
+      <div class="kicker">关键方法创新</div>
+      <p>这份报告的结果是 <em>「零约束」</em>——六个环节全部停留在第一层。这个负向发现比任何「找到卡脖子」都更值钱，因为它直接纠正了一个行业普遍误判。</p>
+    </div>
+
+    <div class="status-map reveal">
+      <div class="status">
+        <div class="t" style="color:var(--amber)">未成壁垒</div>
+        <p>有「玩家少、重资产、集中度高」的结构特征，但特征不足以构成进入壁垒。硅料、硅片、电池片落在这一档。</p>
+      </div>
+      <div class="status">
+        <div class="t" style="color:var(--coral)">门槛不高</div>
+        <p>集中度高是规模经济的结果，单 GW 投资最低、认证月级，进入门槛并不高。组件落在这一档。</p>
+      </div>
+      <div class="status">
+        <div class="t" style="color:var(--muted)">供给充分</div>
+        <p>供给端不存在稀缺——要么主体密集，要么资产在未上市集团。逆变器、电站落在这一档。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04 deep dive -->
+<section class="sec" id="deepdive">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">04 · SEGMENT-BY-SEGMENT</div>
+        <h2 class="sec-title">逐环节：六个环节，零个约束</h2>
+      </div>
+      <div class="right">证据分层 · 诚实标注</div>
+    </div>
+    <p class="reveal" style="max-width:820px;color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:36px">
+      六个环节逐一过检，<b style="color:var(--ink)">没有一个</b>达到结构性约束门槛。三个上游环节「未成壁垒」，组件「门槛不高」，逆变器与电站「供给充分」。
+    </p>
+
+    <div class="seg-grid reveal">
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">硅料</span><span class="seg-tag tag-amber">未成壁垒</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">4 <small>家 · 12.1%</small></span></div>
+        <div class="metric"><span class="k">资本投入强度</span><span class="val">7.8% <small>研发 2.1%</small></span></div>
+        <div class="metric"><span class="k">单吨投资</span><span class="val">8.5–10.5 <small>万元/吨</small></span></div>
+        <div class="metric"><span class="k">扩产周期 / 国产化</span><span class="val">15–24 月 <small>· 95.3%</small></span></div>
+        <div class="judge"><b>判断</b>：重资产 + 长扩产周期是真实特征，但「重资产」本身不等于进入壁垒；资本投入强度是流量口径，被 2026 去产能周期压低，也不足以证明存量壁垒。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">硅片</span><span class="seg-tag tag-amber">未成壁垒</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">4 <small>家 · 12.1%</small></span></div>
+        <div class="metric"><span class="k">资本投入强度</span><span class="val">18.3% <small>六环节第二高</small></span></div>
+        <div class="metric"><span class="k">单 GW 投资</span><span class="val">2.2–3.5 <small>亿元/GW</small></span></div>
+        <div class="metric"><span class="k">单晶 / N 型</span><span class="val">≥98% <small>· ~97%</small></span></div>
+        <div class="judge"><b>判断</b>：确实吃资本、吃工艺，但「集中」是结构特征而非壁垒，没有证据表明大尺寸硅片的对外供给被少数企业锁死。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">电池片</span><span class="seg-tag tag-amber">未成壁垒</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">3 <small>家 · 9.1%（最少）</small></span></div>
+        <div class="metric"><span class="k">资本投入强度</span><span class="val">5.2% <small>研发 1.7%</small></span></div>
+        <div class="metric"><span class="k">TOPCon 设备投资</span><span class="val">1.5–2.1 <small>亿元/GW</small></span></div>
+        <div class="metric"><span class="k">技术路线</span><span class="val">TOPCon 87.6% <small>HJT 2.6%</small></span></div>
+        <div class="judge"><b>判断</b>：主体最少源于一体化龙头把电池片内化自用，不是真实供给稀缺；技术路线换挡带来的沉没成本属于竞争维度，不构成供给锁死。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">组件</span><span class="seg-tag tag-coral">门槛不高</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">8 <small>家 · 24.2%</small></span></div>
+        <div class="metric"><span class="k">资本投入强度</span><span class="val">8.5% <small>研发 2.9%</small></span></div>
+        <div class="metric"><span class="k">单 GW 投资</span><span class="val">0.8–1.4 <small>亿元/GW（最低）</small></span></div>
+        <div class="metric"><span class="k">出货集中度 CR5</span><span class="val">73.9% <small>· 认证 3–6 月</small></span></div>
+        <div class="judge"><b>判断</b>：头部高度集中是规模经济和产业整合的结果；单 GW 投资最低 + 认证周期月级，说明进入门槛不高，集中度起不到壁垒作用。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">逆变器</span><span class="seg-tag tag-none">供给充分</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">9 <small>家 · 27.3%（最多）</small></span></div>
+        <div class="metric"><span class="k">资本投入强度</span><span class="val">4.2% <small>六环节最低</small></span></div>
+        <div class="metric"><span class="k">研发投入强度</span><span class="val">6.7% <small>六环节最高</small></span></div>
+        <div class="metric"><span class="k">国产化率 / CR5</span><span class="val">52.5% <small>· 63.9%</small></span></div>
+        <div class="judge"><b>判断</b>：主体密集 + 资本最低 + 研发最高，供给端既不稀缺也不被锁死；阳光电源 25.2%、华为 24.8%，竞争在认证、渠道与海外。</div>
+      </div>
+      <div class="seg-card">
+        <div class="top"><span class="seg-name">电站与系统</span><span class="seg-tag tag-none">供给充分</span></div>
+        <div class="metric"><span class="k">上市主体</span><span class="val">5 <small>家 · 15.2%</small></span></div>
+        <div class="metric"><span class="k">资本投入强度</span><span class="val">23.4% <small>n=2 两极</small></span></div>
+        <div class="metric"><span class="k">持有人结构</span><span class="val">国企 ~94% <small>央企 ~53%</small></span></div>
+        <div class="metric"><span class="k">全国累计并网</span><span class="val">1,272 <small>GW</small></span></div>
+        <div class="judge"><b>判断</b>：主体少源于电站资产多由能源集团/未上市主体持有，是统计口径，不是供给稀缺；市场规模并不小。</div>
+      </div>
+    </div>
+
+    <div class="cols" style="margin-top:48px">
+      <div class="chart-card reveal">
+        <div class="cap">关键洞察 · 资本投入 vs 研发投入</div>
+        <div class="ttl">光伏的壁垒不是「砸钱」，也不是「砸研发」</div>
+        <div class="bars">
+          <div class="bar-row"><div class="bar-label">电站 · 资本</div><div class="bar-track"><div class="bar-fill muted" style="width:100%"></div></div><div class="bar-val">23.4%</div></div>
+          <div class="bar-row"><div class="bar-label">硅片 · 资本</div><div class="bar-track"><div class="bar-fill coral" style="width:78%"></div></div><div class="bar-val">18.3%</div></div>
+          <div class="bar-row"><div class="bar-label">组件 · 资本</div><div class="bar-track"><div class="bar-fill ice" style="width:36%"></div></div><div class="bar-val">8.5%</div></div>
+          <div class="bar-row"><div class="bar-label">硅料 · 资本</div><div class="bar-track"><div class="bar-fill amber" style="width:33%"></div></div><div class="bar-val">7.8%</div></div>
+          <div class="bar-row"><div class="bar-label">电池片 · 资本</div><div class="bar-track"><div class="bar-fill amber" style="width:22%"></div></div><div class="bar-val">5.2%</div></div>
+          <div class="bar-row"><div class="bar-label">逆变器 · 资本</div><div class="bar-track"><div class="bar-fill teal" style="width:18%"></div></div><div class="bar-val">4.2%</div></div>
+          <div class="bar-row"><div class="bar-label">逆变器 · 研发</div><div class="bar-track"><div class="bar-fill teal" style="width:29%"></div></div><div class="bar-val">6.7%</div></div>
+        </div>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">逆变器是「制造型低资本、高研发」的典型：资本投入强度全环节最低（4.2%），研发却全环节最高（6.7%）。光伏真正的竞争维度是产能周期、技术路线、认证渠道，而非单一的资本或研发壁垒。</p>
+      </div>
+      <div class="chart-card reveal d1">
+        <div class="cap">行业总量锚 · 关键口径</div>
+        <div class="ttl">上游高度国产化，但集中度是结果不是约束</div>
+        <table class="tbl">
+          <tr><th>指标</th><th class="num">数值</th><th class="num">口径</th></tr>
+          <tr><td>硅料国产化率</td><td class="num"><b>95.3%</b></td><td class="num">产能 · CPIA</td></tr>
+          <tr><td>硅片国产化率</td><td class="num"><b>96.9%</b></td><td class="num">产量 · CPIA</td></tr>
+          <tr><td>硅料产能 CR10</td><td class="num">79.8%</td><td class="num">全球 · CPIA</td></tr>
+          <tr><td>组件出货 CR5</td><td class="num">73.9%</td><td class="num">2024 · 自算</td></tr>
+          <tr class="hl"><td>逆变器出货 CR5</td><td class="num"><b>63.9%</b></td><td class="num">2025 · S&amp;P Global</td></tr>
+        </table>
+        <p style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7">上游国产化率已超 95%，「卡脖子」无从谈起；组件/逆变器集中度高，但都属于规模经济与产业整合的结果，未对应不可替代的壁垒。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05 decisions -->
+<section class="sec alt" id="decisions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">05 · WHAT IT MEANS</div>
+        <h2 class="sec-title">六个环节，六条决策含义</h2>
+      </div>
+      <div class="right">从「找卡脖子」转向「看竞争」</div>
+    </div>
+    <div class="decision-list reveal">
+      <div class="decision-item">
+        <div class="idx">01</div>
+        <div><h4>上游主体少，不等于供给受限</h4><p>硅料、硅片、电池片合计仅 11 家（33.3%），但判断供给松紧要看资本开支强度、扩产周期与产能周期，公司家数只能当参考。</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">02</div>
+        <div><h4>量硅料，要看成本曲线和产能周期</h4><p>单吨投资 8.5–10.5 万元、扩产 15–24 个月，强周期 + 高沉没成本。谁在成本曲线低位谁活得久，产能停得越久越难重启。</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">03</div>
+        <div><h4>电池片，盯技术路线的迁移成本</h4><p>TOPCon 占 83%，HJT/XBC 设备投资显著更高。设备投资差异决定换路线要扔掉多少旧资产，也决定下一个技术窗口谁先卡位。</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">04</div>
+        <div><h4>组件的集中是结果，不是壁垒</h4><p>单 GW 投资最低（0.8–1.4 亿）、认证 3–6 个月，进场不难。拉开差距的是制造成本、扩产能力和一体化效率。</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">05</div>
+        <div><h4>逆变器的竞争在认证、渠道与海外</h4><p>中国厂商已占全球出货相当份额（阳光 25.2%、华为 24.8%），下一步拼海外并网认证、渠道与品牌，而非国内产能供给。</p></div>
+      </div>
+      <div class="decision-item">
+        <div class="idx">06</div>
+        <div><h4>电站要用持有装机口径看</h4><p>全国累计并网 1272 GW，但资产多在发电集团和未上市主体手中，「上市家数」是错误刻度，须先统一自持/滚动开发/受托运维的分子口径。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06 boundaries -->
+<section class="sec" id="boundary">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">06 · BOUNDARIES</div>
+        <h2 class="sec-title">边界与局限，诚实交代</h2>
+      </div>
+      <div class="right">口径边界 · 不回避</div>
+    </div>
+    <div class="method-grid reveal">
+      <div class="method">
+        <div class="ic">证据层级</div>
+        <h4>主体身份已核验，部分口径为摘要级</h4>
+        <p>样本主体身份已逐家核验；部分主体的公开信息仅有摘要级披露，产能、出货、收入等口径未经逐字原文核验，价值链归类基于公开披露事实。</p>
+      </div>
+      <div class="method">
+        <div class="ic">样本覆盖</div>
+        <h4>33 家是上市主体全量对账结果</h4>
+        <p>光伏辅材/设备、纯代理经销、风光混合运营商与主营非光伏主体按显式规则剔除；未上市大厂与代工厂不在覆盖范围，结论不可外推至全行业。</p>
+      </div>
+      <div class="method">
+        <div class="ic">统计性质</div>
+        <h4>截面快照，无时间序列</h4>
+        <p>主体分布为研究截止时点（2026-10-01）的横截面状态，只反映「当前是什么样」，不做趋势判断。</p>
+      </div>
+      <div class="method">
+        <div class="ic">分类粒度</div>
+        <h4>一体化龙头主归属为人工裁定</h4>
+        <p>通威算硅料、隆基算组件，按收入占比变化需复核；逆变器兼储能主归逆变器，储能收入未拆分。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07 method -->
+<section class="sec alt" id="method">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-no">07 · METHODOLOGY</div>
+        <h2 class="sec-title">研究方法与数据来源</h2>
+      </div>
+      <div class="right">可复现 · 可核验</div>
+    </div>
+    <div class="method-grid reveal">
+      <div class="method">
+        <div class="ic">样本</div>
+        <h4>33 家 A+H 股上市主体</h4>
+        <p>主营属于光伏六大环节的公开可查主体，按价值链环节归类，覆盖硅料到电站全链条。</p>
+      </div>
+      <div class="method">
+        <div class="ic">壁垒证据</div>
+        <h4>资本投入强度 + 研发强度，双代理</h4>
+        <p>用「购建固定资产等现金/营收」度量资本形成，「研发费用/营收」度量研发投入，把「高壁垒」拆成两个可测维度。</p>
+      </div>
+      <div class="method">
+        <div class="ic">行业锚</div>
+        <h4>装机、产能、集中度三类总量</h4>
+        <p>用行业总量对照样本分布，判断「主体数量少」到底是真实稀缺还是统计口径。国产份额均为公开报告估计值。</p>
+      </div>
+      <div class="method">
+        <div class="ic">数据源</div>
+        <h4>权威口径 + 一手公告</h4>
+        <p>行业总量来自 IEA PVPS、国家能源局、CPIA、InfoLink、TrendForce、工信部；主体维度来自上市公司定期报告。</p>
+      </div>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:36px">
+      <div class="cap">口径纪律 · 三个「不等于」</div>
+      <div class="ttl">这三点贯穿全文，是这份报告可信的前提</div>
+      <div class="limits">
+        <div class="limit"><div class="idx">01</div><p><b>主体数量少 ≠ 供给不足</b>。上游主体少源于一体化内化与资产持有结构，不是产能真的缺。</p></div>
+        <div class="limit"><div class="idx">02</div><p><b>集中度高 ≠ 不可替代壁垒</b>。组件、逆变器集中度高是规模经济结果，不对应「后来者进不来」。</p></div>
+        <div class="limit"><div class="idx">03</div><p><b>上市主体数量 ≠ 国产化率</b>。本报告统计的是上市主体分布，不声称任何国产化率。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-line">
+      <div class="b"><span class="dot"></span>光伏产业链供给格局 · 行业判断报告</div>
+      <div class="stamp">PV · 2026 · 结论冻结版</div>
+    </div>
+    <p class="fine">
+      本报告基于公开信息与上市公司定期报告整理，用于行业结构研究与决策参考，不构成任何投资建议。
+      报告统计的是「上市主体数量分布」这一结构事实，不声称任何「国产化率」；「供给稀薄」与「结构性供给约束」均基于三层证据的独立判断，而非外部叙事标签。
+      数据来源：IEA PVPS、国家能源局、中国光伏行业协会（CPIA）、InfoLink、TrendForce、工信部，以及各上市公司 2025 年报 / 2026 半年报。
+    </p>
+  </div>
+</footer>
+
+<script>
+  const progress = document.getElementById('progress');
+  function onScroll(){
+    const h = document.documentElement;
+    const sc = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (sc * 100) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
